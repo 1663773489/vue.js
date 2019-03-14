@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>数据与方法</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<!--<button onclick="getElementById('demo').innerHTML=Date()">现在的时间是</button>
+	 <p id="demo"></p>   //输出事件
+	 <div id="app">aow</div>
+	 <p>{{a}}</p>
+	 <div id="example">oui</div>
+	<script>
+		var data={ a:1}
+		var vm=new Vue({
+			data:data
+		})
+		vm.a==data.a;
+		vm.a=2;
+		data.a;
+		data.a=3;
+		vm.a;
+		vm.b='hi';
+  		var obj = {
+  			foo: 'bar'
+			};
+		Object.freeze(obj)
+			var app=new Vue({
+ 				 el: '#app',
+ 				 data:
+ 				 	obj 
+ 				 
+		})
+			var data = { a: 1 };
+ 		var app = new Vue({
+			  el: '#example',
+ 			 data: data
+		})
+			vm.$data === data // => true
+			vm.$el === document.getElementById('example') // => true
+			// $watch 是一个实例方法
+			vm.$watch('a', function (newValue, oldValue) {
+			  // 这个回调将在 `vm.a` 改变后调用
+		})
+			new Vue({
+  data: {
+    a: '1'
+  },
+  created: function () {
+    // `this` 指向 vm 实例
+    console.log('a is: ' + this.a)
+  }
+})
+
+	</script>-->
+		<div id="a">{{b}}</div>
+
+
+
+		<script>
+			var a = new Vue({
+				methods: {
+					aaa () {
+						console.log('运行aaa')
+					}
+				},
+				el:"#a",
+				data:{
+					b:"shengmingzouq"
+				},
+				beforcreated:function(){
+					console.log('创建前');
+					console.log(this.$el)
+					
+				},
+				created:function(){
+					console.log('创建后');
+					console.log(this.$el)
+
+				},
+				beformount:function(){
+					console.log('mount前');
+					this.aaa()
+					console.log(this.$el)
+
+				},
+				mounted:function(){
+					console.log('mount后');
+					
+					console.log(this.$el)
+
+				},
+				beforeUpdate: function() {            
+					console.log("更新前");            
+					console.log(this.b)            
+					console.log(this.$el)          
+				},          
+					updated: function() {            
+					console.log("更新完成");            
+					console.log(this.b)           
+					console.log(this.$el)          
+				},          
+				beforeDestroy: function() {            
+					console.log("销毁前");            
+					console.log(this.b)            
+					console.log(this.$el)            
+					console.log(this.$el)          
+				},          
+					destroyed: function() {           
+					console.log("已销毁");          
+					console.log(this.b)          
+					console.log(this.$el)          
+				}   
+				  });  
+				</script>
+
+</body>
+</html>
