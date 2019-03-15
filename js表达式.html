@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>js表达式</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="c">
+		{{ 5+5 }}<br>
+		{{ ok ? 'yes' :'no' }}<br>
+		{{ message.split('').reverse().join('') }}
+		<div v-bind:id="'list-'+id">这个么</div>
+	</div>
+	<script>
+		var c=new Vue({
+			el:'#c',
+			data:{
+				ok:true,
+				message:'什么',
+				id:1
+			}
+		})
+	</script>
+</body>
+</html>

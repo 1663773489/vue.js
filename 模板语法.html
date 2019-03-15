@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>模板语法</title>
+	<style type="text/css">
+		.class1{
+			background: black;
+			color:red;
+		}
+	</style>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
+</head>
+<body>
+	<div id="b">
+		<label pop='opo'>修改颜色</label>
+		<input type="checkbox" v-model="oop" id="opo">
+		<br><br>
+		<div v-bind:class="{'class1':oop}">
+			v-bind:class指令
+		</div>
+	</div>
+	<div id="a">
+		<span>message:{{you}}</span>
+		<span v-once>这个不会改变:{{you}}</span>
+		<p>Using mustaches:{{rawHtml}}</p>
+		<p>Using v-html directive:<span v-html="rawHtml"></span></p>
+	</div>
+	<div v-bind:id="dynamicId">
+		<button >Button</button>
+	</div>
+</body>
+	<script>
+		var a=new Vue({
+			el:'#a',
+			el:'#b',
+			data:{
+				you:'这是一个文本',
+				rawHtml:'<span style="color:red">这里应该是红色.</span>',
+				oop:true
+			}
+		})
+	</script>
+</html>
