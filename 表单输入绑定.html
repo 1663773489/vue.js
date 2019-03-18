@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="a">
+		<span> Multiline message is:</span>
+		<br>
+		<input v-model="message"  placeholder="edit me"><!--文本-->
+		<p> Message is :{{message}}</p> 
+		<br>
+		<textarea v-model="message1" placeholder="add multiple lines"></textarea><!--多行文本-->
+		<br>
+		<input type="checkbox"  id="1" value="Jack" v-model="checknames">
+		<label for="1">Jack</label>
+		<input type="checkbox" id="2" value="Rose" v-model="checknames">
+		<label for="2">Rose</label>
+		<input type="checkbox" id="3" value="Jone" v-model="checknames">
+		<label for="3">Jone</label>
+		<br>
+		<span>checked names is : {{checknames}}</span>
+		<!--多个复选框-->
+		<br>
+		<br>
+		<input type="radio" id="one" value="one" v-model="pick">
+		<label for="one"> one</label>
+		<br>
+		<input type="radio" id="two" value="two" v-model="pick">
+		<label for="two"> two</label>
+		<br>
+		<span> picked:{{ pick }}</span>
+		<!--单选按钮-->
+		<br>
+		<br>
+		<select v-model="seleted">
+			<option disabled value="">请选择</option>
+			<option>A</option>
+			<option>B</option>
+			<option>C</option>
+		</select>
+		<span> select: {{ seleted}}</span>
+		<!--选择框-->
+		<br>
+		<br>
+		<select v-model="selectted"  multiple style="width:50px;">
+			<option>A</option>
+			<option>B</option>
+			<option>C</option>
+		</select>
+		<br>
+		<span> selectted:{{selectted}}</span>
+		<!--多选时（绑定到一个数组）-->
+		<br>
+		<br>
+		<select v-model="selected">
+			<option v-for="option in options" v-bind:value="option.value">
+				{{ option.text }}
+			</option>
+		</select>
+		<span> selected:{{selected}}</span>
+		<!--使用v-for渲染动态选项-->
+		<input type="radio" v-model="pick1" value="a">
+		<br>
+		<br>
+		<input type="checkbox"   v-model="checked">
+		<!--checked为true或者是false-->
+		<br>
+		<br>
+		<select v-model="select1">
+			<option value="abc">ABC</option>
+		</select>
+		<input type="checkbox" v-model="toggle" true-value="yes" false-value="no">
+		<!--复选框，这里的 true-value 和 false-value 特性并不会影响输入控件的 value 特性-->
+		
+	</div>
+</body>
+	<script>
+		var a =new Vue({
+			el:"#a",
+			data:{
+				message:'',
+				message1:'',
+				checknames:[],//多选时的标志
+				pick:'',
+				seleted:'',
+				selectted:[],//多选时的标志
+				selected:'A',
+				options:[
+				{text:'one' ,value:'A'},
+				{text:'two' ,value:'B'},
+				{text:'three',value:'C'}
+				],//v-for渲染动态选项
+				pick1:'',
+				checked:true,
+				select1:'ABC',
+				toggle:true
+			}
+		})
+	</script>
+</html>
