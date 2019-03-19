@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<style>
+		.base {
+		  width: 100px;
+		  height: 100px;
+		}
+
+		.active {
+		  background: green;
+		}
+
+		.text-danger {
+		  background: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+	  <div v-bind:class="classObject"></div>
+	</div>
+</body>
+<script>
+	new Vue({
+		  el: '#app',
+		  data: {
+		    isActive: true,
+		    error: {
+		      value: true,
+		      type: 'fatal'
+		    }
+		  },
+		  computed: {
+		    classObject: function () {
+		      return {
+		 			base: true,
+		        	active: this.isActive && !this.error.value,
+		        	'text-danger': this.error.value && this.error.type === 'fatal',
+		      }
+		    }
+		  }
+		})
+</script>
+</script>
+</html>
