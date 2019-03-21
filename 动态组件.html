@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
+	<title>动态组件</title>
+</head>
+<body>
+<div id="a">
+	<button @click="change">homes</button>
+	<button @click="change">posts</button>
+	<button @click="change">archive</button>
+	<br>
+	<component :is="currentView"></component>
+</div>
+</body>
+<script>
+	var home={
+		template:'<input value="我是主页">'
+	};
+	var post={
+		template:'<input value="我是提交页">'
+	};
+	var archive={
+		template:'<input value="我是存档页">'
+	};
+	new Vue({
+		el:'#a',
+		components:{
+			home,
+			post,
+			archive,
+		},
+		data:{
+			index:0,
+			arr:['home','post','archive'],
+		},
+		computed:{
+			currentView:function () {
+				return this.arr[this.index]
+			}
+		},
+		methods:{
+			change:function(){
+				this.index=(++this.index)%3
+			}
+		}
+	})
+</script>
+</html>

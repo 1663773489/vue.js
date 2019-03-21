@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
+</head>
+<body>
+<div id="a">
+	<my-components :count='1'></my-components>
+</div>
+</body>
+<script>
+	Vue.component('my-components',{
+		template:'<h1>{{count}}</h1>',
+		props:['count'],
+		data:function (){
+			return {
+			 value:this.count
+			}
+		}
+	})
+	new Vue({
+		el:'#a'
+	})
+</script>
+</html>

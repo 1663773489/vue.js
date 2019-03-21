@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
+</head>
+<body>
+	<div id="a">
+		<my-com 
+		v-for="n in number"
+		v-bind:n="n">
+		</my-com>
+		
+	</div>
+</body>
+<script>
+	Vue.component('my-com',{
+		props:['n'],
+		template:'<h1>props <li>{{n}}</li></h1>'
+	})
+	new Vue({
+		el:'#a',
+		data:{
+			number:[1,2
+			]
+		}
+	})
+</script>
+</html>
