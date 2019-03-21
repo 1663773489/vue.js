@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title></title>
+</head>
+<body>
+	<div id="a">
+		<!-- <ul v-for="n in abc">
+		<li  v-if="n>3">
+			{{n}}
+		</li>
+		<li v-else>这个是{{n}}</li>
+	</ul> -->
+	<button v-on:click="count++">you click me {{count}} times</button>
+	<button-abc></button-abc>
+	</div>
+</body>
+<script>
+	Vue.component('button-abc',{
+		data:function(){
+			return{
+				count:1
+			}
+		},
+		template:'<button v-on:click="count++">you click me {{count}} times</button>'
+	})
+	new Vue({
+		el:'#a',
+		data:{
+			// abc:[1,2,3,4,5,6,7,8,9,10],
+			count:0
+		},
+		// components:['buttonV']
+	})
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
+	<title>组件的局部注册</title>
+</head>
+<body>
+	<div id="a">
+		<runoob></runoob>
+		<my-component1></my-component1>
+		<my-component2></my-component2>
+		<my-component3></my-component3>
+	</div>
+</body>
+<script>
+	Vue.component('my-component3',{
+		template:'<h1>全局注册</h1>'
+	})
+	var mycomponent1 ={
+		template:'<h1>局部注册</h1>'
+	}
+	var mycomponent2 ={
+		template:'<h2>局部注册</h2>'
+	}
+	var Child ={
+		template:'<h1>这是一个局部定义的组件</h1>'
+	}
+	new Vue({
+		el:'#a',
+		data:{
+
+		},
+		components:{
+			'runoob':Child,
+			'my-component1':mycomponent1,
+			'my-component2':mycomponent2
+		}
+	})
+</script>
+</html>
