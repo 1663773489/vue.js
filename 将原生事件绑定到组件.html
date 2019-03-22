@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="a">
+	<!-- <label>
+		{{label}}
+		<input >
+	</label> -->
+	<my-component v-on:focus="onFocus"></my-component>
+</div>
+<script>
+	Vue.component("my-component",{
+		inheritAttrs:false,
+		props:['lable','value'],
+		computed:{
+			inputListeners:function () {
+				var vm=this
+				return Object.assign({},
+					this.$listeners,
+					{
+						input:function(event){
+							vm.$emit('input',event.target.value)
+						}
+					}
+				)
+			}
+		},
+		template:'<label>\
+					{{lable}}\
+				<input \
+					v-bind="$attrs"\
+					v-bind:value="value"\
+					v-on="inputListeners">\
+				</label>'
+	})
+	new Vue({
+		el:"#a",
+		data:{
+			onFocus:''
+		}
+	})
+</script>
+</body>
+</html>

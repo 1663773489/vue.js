@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title></title>
+	<style type="text/css">
+		#a{
+			background: green;
+			width: 800px;
+			height: 100px;
+		}
+		#b{
+			background: red;
+			width: 800px;
+			height:40px;
+		}
+	</style>
+</head>
+<body>
+	<div id="a">
+		<form v-on:submit.prevent="addNewTitle">
+		<label for="add1">点击它你可以添加你想添加的</label>
+		<input v-model="news" id="add1" placeholder="You can click it" >
+		<button>ADD</button>
+		<my-component1
+			v-for="(title,index) in todos"
+			v-bind:key="title.id"
+			v-bind:title="title.text"
+			v-on:remove="todos.splice(index,1)"></my-component1>
+		</form>
+	</div>
+	<div id="b">
+		<button v-on:click="greet">点击一下</button>
+	</div>
+</body>
+<script>
+	Vue.component("my-component1",{
+		props:['title'],
+		template:'<li> <button v-on:click="$emit(\'remove\')">Remove</button>{{title}}</li>'
+	})
+	new Vue({
+		el:'#a',
+		data:{
+			seen:true,
+			news:'',
+			todos:[
+			{id:1,text:"第一个可移动"},
+			{id:2,text:"第二个可移动"}],
+			newTitleId:3
+		},
+		methods:{
+			addNewTitle:function () {
+				this.todos.push({
+					id:this.newTitleId++,
+					text:this.news
+				}),
+				this.newTitleText=''
+			}
+		}
+	});
+	new Vue({
+		el:'#b',
+		data:{
+			name:"vue.js"
+		},
+		methods:{
+			greet:function(abc){
+				alert("hello"+this.name)
+			},
+			if (abc){
+				alert(abc.target.tagName)
+			}
+		}
+	})
+</script>
+</html>
