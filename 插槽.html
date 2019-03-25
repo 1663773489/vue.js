@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title>插槽</title>
+</head>
+<body>
+	<div id="app">
+		<my-component>你好
+			<template slot="girl">
+				漂亮，美丽、大方
+			</template>
+			<template slot="boy">
+				帅气
+			</template>
+			<template>
+				<h1>还有另一类人</h1>
+			</template>
+			<template v-slot="a">
+				{{a}}
+			</template>
+		</my-component>
+	</div>
+</body>
+<script>
+	Vue.component('my-component',{
+		template:'<div>hello,你好\
+				<slot name="girl"></slot>\
+				 <div style="height:1px;background-color:red;"></div>\
+				 <slot say="你好"></slot></div>'
+	})
+	var a = new Vue({
+		el:"#app",
+		data:{
+
+		}
+	})
+</script>
+</html>

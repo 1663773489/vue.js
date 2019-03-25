@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title>异步组件</title>
+</head>
+<body>
+<div id="a">
+	
+</div>
+</body>
+<script>
+	Vue.component('async-example',function(resolve,reject){
+		setTimeout(function(){
+			//向resolve回调传递组件定义
+			resolve({
+				template:'<div>I am async!</div>'
+			})
+		},1000)
+		})
+</script>
+</html>
