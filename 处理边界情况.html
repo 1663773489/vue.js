@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title>访问根实例</title>
+</head>
+<body>
+<div id="example">
+	<h3>我是根组件</h3>
+    <input v-model="rootMsg">
+    <p>{{rootMsg}}</p>  
+	<parent-component></parent-component>
+</div>
+	<template id="parent-component">
+	  <div class="parent">
+	    <h3>我是父组件</h3>
+	    <input v-model="parentMsg">
+	    <p>{{parentMsg}}</p>
+	    <child-component></child-component>    
+	  </div>
+	</template>
+	<template id="child-component">
+	  <div class="child">
+	    <h3>我是子组件</h3>
+	    <p>{{msg}}</p>
+	    <p>
+      		<button v-on:click="showRootData">显示根组件数据</button><span>{{rootMsg}}</span>
+    	</p>    
+	    <p>
+      		<button v-on:click="showParentData">显示父组件数据</button><span>{{parentMsg}}</span>
+    	</p>
+	 </div>
+</template>
+</body>
+<script>
+	Vue.component('parent-component', {
+		  template: '#parent-component',
+		  data(){
+		    return{
+		      parentMsg:'我是父组件的数据'
+		    }
+		  },
+		  components:{
+		    'child-component':{
+		      template:'#child-component',
+		      data(){
+		        return{
+		         	parentMsg:'',
+          			rootMsg:'',
+          			msg:''
+		        }
+		      },
+		   methods:{
+		   		showData(){
+		   			this.msg = this.$parents.parentMsg;
+		   		},
+		        showParentData(){
+		          	this.parentMsg = this.$parent.parentMsg;
+		        },
+		        showRootData(){
+		          	this.rootMsg = this.$root.rootMsg;
+        }
+      }
+    }
+  }
+})
+	new Vue({
+  		el: '#example',
+  		data:{
+    		rootMsg:'我是根组件内容',
+    		parentMsg:''
+  }
+})
+
+</script>
+</html>

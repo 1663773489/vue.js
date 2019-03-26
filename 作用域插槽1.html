@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>作用于插槽</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+	<child :items="items">
+		<template slot="item" scope="props">
+			<li>
+	            {{props.tex}}
+	        </li>	
+		</template>
+	</child>
+</div>
+</body>
+<script>
+    Vue.component('child',{
+        props:["items"],
+        template:'<ul><slot name="item" v-for="item in items" v-bind:tex="item.text"></slot></ul>'
+    });
+new Vue({
+    el:'#app',
+    data:{
+        items:[
+            {text:'实例1'},
+            {text:'实例2'},
+            {text:'实例3'},
+            {text:'实例4'},
+            {text:'实例5'},
+            {text:'实例6'}
+        ]
+    }
+})
+</script>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title>插槽</title>
+</head>
+<body>
+<div id="app">
+<todo-list>
+	<ul>
+  		<li
+		    v-for="todo in filteredTodos"
+		    v-bind:key="todo.id">
+		    <slot name="todo" v-bind:todo="todo">
+		    {{ todo.text }}
+			</slot>
+  		</li>
+	</ul>
+</todo-list>
+</div>
+</body>
+<script>
+	Vue.component('todo-list',{
+		prop:['todo'],
+		template:
+		'<div>\
+		<h1>\
+		这是一个插槽实例\
+		</h1>\
+		<slot></slot>\
+		</div>'
+
+	})
+	new Vue({
+		el:'#app',
+		data:{
+			filteredTodos:[
+			{id:1, text:'这个'},
+			{id:2, text:'那个'},
+			{id:3, text:'他的'}]
+		}
+	})
+</script>
+</html>

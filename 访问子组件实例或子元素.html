@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title>refs作用</title>
+</head>
+<body>
+<div id="example">
+  <parent-component></parent-component>
+</div>
+<template id="parent-component">
+  <div class="parent">
+    <h3>我是父组件</h3>
+    <div>
+      <button @click="getData1">获取子组件c1的数据</button>
+      <p>{{msg1}}</p>
+    </div>
+    <div>
+      <button @click="getData2">获取子组件c2的数据</button>
+      <p>{{msg2}}</p>
+    </div>
+    <child-component1 ref="c1"></child-component1> 
+    <child-component2 ref="c2"></child-component2>   
+  </div>
+</template>
+<template id="child-component1">
+  <div class="child">
+    <h3>我是子组件1</h3>
+    <input v-model="msg">
+    <p>{{msg}}</p>
+  </div>
+</template>
+<template id="child-component2">
+  <div class="child">
+    <h3>我是子组件2</h3>
+    <input v-model="msg">
+    <p>{{msg}}</p>
+  </div>
+</template>
+</div>
+</body>
+<script>
+	Vue.component('parent-component', {
+  template: '#parent-component',
+  data(){
+    return{
+      msg1:'',
+      msg2:'',
+    }
+  },
+  methods:{
+    getData1(){
+      this.msg1 = this.$refs.c1.msg;
+    },
+    getData2(){
+      this.msg2 = this.$refs.c2.msg;
+    },    
+  },
+  components:{
+    'child-component1':{
+      template:'#child-component1',
+      data(){
+        return{
+          msg:'',
+        }
+      },
+    },
+    'child-component2':{
+      template:'#child-component2',
+      data(){
+        return{
+          msg:'',
+        }
+      },
+    }, 
+  }   
+})
+new Vue({
+  el: '#example'
+})
+</script>
+</html>
