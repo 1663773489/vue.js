@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title></title>
+	<style type="text/css">
+		.fade-enter,.fade-enter-to{
+			opacity: 0;
+		}
+		.fade-leave-active,.fade-leave-active{
+			transition: opacity.5s;
+		}
+	</style>
+</head>
+<body>
+<div id="demo">
+	<button @click="change">切换页面</button>
+	<transition name="fade" mode="out-in">
+		<component :is="currentView"></component>
+	</transition>
+</div>
+</body>
+<script>
+	new Vue({
+		el:"#demo",
+		data:{
+			index:0,
+			arr:[
+			{template:'<div>ComponentA</div>'},
+			{template:'<div>ComponentB</div>'},
+			{template:'<div>ComponentC</div>'}],
+		},
+		computed:{
+			currentView(){
+				return this.arr[this.index]
+			}
+		},
+		methods:{
+			change(){
+				this.index=(++this.index)%3;
+			}
+		}
+	})
+</script>
+</html>

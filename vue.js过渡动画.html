@@ -35,7 +35,8 @@
 		Toggle
 	</button>
 	<transition name="fade">
-		<p v-if="show">hello</p>
+		<p v-if="show" key="1">hello</p>
+		<p v-else key="2">nihao</p>
 	</transition>
 </div>
 <div id="a">

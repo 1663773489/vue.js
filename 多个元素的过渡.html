@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title></title>
+	<style type="text/css">
+		.fade-enter,.fade-enter-to{
+			opacity:0;
+		}
+		.fade-leave-active,.fade-leave-active{transition:opacity.6s;
+
+		}
+	</style>
+</head>
+<body>
+<div id="demo">
+	<button @click="clear">清空数据</button>
+	<button @click="reset">重置</button>
+	<transition name="fade">
+		<ul v-if="items.length>0">
+			<li v-for="item in items">
+				{{item}}
+			</li>
+		</ul>
+		<p v-else>sorry,no items founds</p>
+	</transition>
+</div>
+</body>
+<script>
+	new Vue({
+		el:'#demo',
+		data:{
+			items:['html','css','javascript']
+		},
+		methods:{
+			clear(){
+				this.items.splice(0);
+			},
+			reset(){
+				history.go();
+			}
+		}
+	})
+</script>
+</html>
