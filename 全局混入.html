@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title></title>
+</head>
+<body>
+<div id="demo"></div>
+</body>
+<script type="text/javascript">
+	Vue.mixin({
+		created:function(){
+			var myOption =this.$options.myOption
+			if(myOption){
+				document.write(myOption)
+			}
+		}
+	})
+	new Vue({
+		myOption:'nihao'
+	})
+</script>
+</html>

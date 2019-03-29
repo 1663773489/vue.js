@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title></title>
+</head>
+<body>
+<div id="demo">
+</div>
+</body>
+<script type="text/javascript">
+	var mixin={
+		methods:{
+			hello:function(){
+				document.write('hello方法');
+			},
+			samemethod:function(){
+				document.write('Mixin:相同方法名');
+			}
+		}
+	};
+	var vm =new Vue({
+		mixins:[mixin],
+		methods:{
+			start:function(){
+				document.write('start方法');
+			},
+			samemethod:function(){
+				document.write('Main:相同方法名')
+			}
+		}
+	})
+	vm.hello();
+	vm.samemethod();
+	vm.start();
+</script>
+</html>

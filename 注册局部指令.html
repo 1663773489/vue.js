@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title></title>
+</head>
+<body>
+<div id="demo">
+	<p>局部注册指令</p>
+	<input v-focus>
+</div>
+</body>
+<script type="text/javascript">
+	new Vue({
+		el:'#demo',
+		directives:{
+			focus:{
+				inserted:function(el){
+					el.focus()
+				}
+			}
+		}
+	})
+</script>
+</html>

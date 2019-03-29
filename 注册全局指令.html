@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title></title>
+</head>
+<body>
+<div id="demo">
+	<p>页面载入时，input元素自动获取焦点</p>
+	<input v-focus>
+</div>
+</body>
+<script type="text/javascript">
+	Vue.directive('focus',{
+		inserted:function(el){
+			el.focus()
+		}
+	})
+	new Vue({
+		el:"#demo"
+	})
+</script>
+</html>

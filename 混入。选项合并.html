@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title></title>
+</head>
+<body>
+<div id="demo"></div>
+</body>
+<script type="text/javascript">
+	var mixin={
+		created:function(){
+			document.write('混入'+'<br>')
+		}
+	}
+	new Vue({
+		mixins:[mixin],
+		created:function(){
+			document.write('组件'+'<br>')
+		}
+	})
+</script>
+</html>
