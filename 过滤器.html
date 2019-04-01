@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<my-filter></my-filter>
+<template id="my-filter">
+    <div>
+        <input v-model="filterText">
+       <ul>
+           <li v-for="item in obj">
+               <span>{{myfilter(item.label)}}</span>
+           </li>
+       </ul>
+    </div>
+</template>
+</div>
+<script>
+    Vue.component('my-filter',{ 
+    	template:'#my-filter',
+        data: function () {
+            return{
+                obj:[
+                    {value:0,label:"男子十年盗窃被抓9次"},
+                    {value:1,label:"中国人拯救地球"},
+                    {value:2,label:"张艺谋电影"},
+                    {value:3,label:"科幻电影排行榜"},
+                    {value:4,label:"香港武打片电影"}
+                ],
+                filterText:""
+            }
+        },
+        methods:{
+            myfilter(value){
+                if(value.indexOf(this.filterText)>-1){
+                    return value
+                }
+            }
+       }
+    });
+    new Vue({
+    	el:'#app',
+    	data:{
+    	obj:'',
+    	filterText:''	
+    	}
+    })
+</script>
+</body>
+</html>

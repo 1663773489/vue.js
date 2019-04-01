@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title></title>
+</head>
+<body>
+<div id="app">
+	<m-input @input="value=>name=value" :name="name"></m-input>
+	<p>{{value}}</p>
+</div>
+</body>
+<script type="text/javascript">
+	new Vue({
+		el:'#app',
+		data:{
+			name:'',
+			value:''
+		},
+		components:{
+			'm-input':{
+				render:function(createElement){
+					var that =this;
+					return createElement('input',{
+						domProps:{
+							value:that.name
+						},
+						on:{
+							input:function(event){
+								that.value =event.target.value;
+								that.$emit('input',event.target.value);
+							}
+						}
+					})
+				}
+			}
+		}
+	})
+</script>
+</html>

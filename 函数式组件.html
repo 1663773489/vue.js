@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title></title>
+</head>
+<body>
+<div id="app">
+	<smart-list :items='items'></smart-list>
+</div>
+</body>
+<script type="text/javascript">
+	var EmptyList ={template:'<p>Empty list</p>'};
+	var TableList ='ul';
+	var UnorderedList ='ul';
+	Vue.component('smart-list',{
+		functional:true,
+		render:function(creatElement,context){
+			function appropriateListComp(){
+				var items=context.props.items;
+				if(items.length ===0)return EmptyList;
+				if(typeof items[0] ==='object') return TableList;
+				return UnorderedList
+			}
+			return creatElement(
+				appropriateListComp(),
+				Array.apply(null,{length:context.props.items.length}).map(function(value,index){
+					return creatElement('li',context.props.items[index].name)
+				}))
+		},
+		props:{
+			items:{
+				type:Array,
+				required:true
+			},
+			isOrdered:Boolean
+		}
+	});
+	new Vue({
+		el:'#app',
+		data:{
+				items:[
+				{
+					name:'a',
+					id:0
+				},
+				{
+					name:'b',
+					id:1
+				},
+				{
+					name:'c',
+					id:2
+				}]
+			}
+		})
+</script>
+</html>

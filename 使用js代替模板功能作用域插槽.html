@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title></title>
+</head>
+<body>
+<div id="app">
+	<my-slot>
+		<template slot-scope="props">
+			<div>{{props.text}}</div>
+		</template>
+	</my-slot>
+</div>
+</body>
+<script type="text/javascript">
+	Vue.component('my-slot',{
+		render:function(createElement){
+			var he =createElement('div',{domProps:{innerHtml:'this child div'}});
+			return createElement('div',[he,this.$scopedSlots.default({
+				text:'hello scope'
+			})])
+		}
+	});
+	new Vue({
+		el:'#app'
+	})
+</script>
+</html>

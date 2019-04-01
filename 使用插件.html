@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div id="app">
+	<my-filter></my-filter>
+	<template id="my-filter">
+		<div>
+			<input v-model="filterText">
+			<ul>
+				<li v-for="item in obj">
+					<span>{{myfilter(item.lable)}}</span>
+				</li>
+			</ul>
+		</div>
+	</template>
+</div>
+</body>
+<script type="text/javascript">
+	Vue.component('my-filter',{
+		template:'#my-filter',
+		data:function(){
+			return{
+				obj:[
+				{value:0,lable:'一颗苹果数'},
+				{value:1,lable:'两颗苹果树'},
+				{value:2,lable:'三棵苹果树'}],
+				filterText:'',
+			}
+		},
+		methods:{
+			myfilter(value){
+				if(value.indexOf(this.filterText)>-1){
+					return value
+				}
+			}
+		}
+	});
+	new Vue({
+		el:'#app',
+		data:{
+			obj:'',
+			filterText:''
+		}
+	})
+</script>
+</html>
