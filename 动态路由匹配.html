@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+	<title></title>
+</head>
+<body>
+<div id="app">
+<p>
+	<router-link to='/home'>Home</router-link>
+	<router-link to='/about'>About</router-link>
+	<router-link to='/users'>Users</router-link>
+</p>
+<router-view></router-view>
+</div>
+</body>
+<script type="text/javascript">
+	const Home={temlate:'<h2>Home</h2>'}
+	const About={template:'<h2>About</h2>'}
+	const Users={template:'<h2>Users</h2>\
+							<router-view></view>'}
+	const User={template:'<h2>{{$route.params.username}}</h2>'}
+	const router = new VueRouter({
+  mode: 'history',
+  
+  routes: [
+    { path: '/home', component: Home },
+    { path: '/about', component: About },
+    { path: '/users', component: Users,
+      children: [
+        { path: ':username', name: 'user', component: User }
+      ]
+    }
+  ]
+})
+	new Vue({
+  router
+}).$mount('#app')
+</script>
+</html>
