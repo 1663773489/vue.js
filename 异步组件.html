@@ -2,21 +2,37 @@
 <html>
 <head>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	<title>异步组件</title>
+	<title></title>
 </head>
 <body>
-<div id="a">
-	
+<div id="app">
+	<async-example :list="['我是一个异步组件','如果加载完成，','我就会在这里显示']"></async-example>
 </div>
 </body>
-<script>
-	Vue.component('async-example',function(resolve,reject){
-		setTimeout(function(){
-			//向resolve回调传递组件定义
-			resolve({
-				template:'<div>I am async!</div>'
-			})
-		},1000)
-		})
+<script type="text/javascript">
+	window.async_comp = {template:`<ol>
+										<li v-for="item in list">{{ item }}</li>
+									</ol>`, 
+						props: {  list: Array }};
+	var vm = new Vue( { el: '#app', components: {
+		'async-example': function () {
+			return {
+				component: new Promise( function ( resolve, reject ) {     
+						var script = document.createElement( 'script' );     
+						document.head.appendChild(script);     
+						script.onerror = function () {
+							reject('load failed!');
+					}      
+						script.onload = function () {      
+							if ( typeof async_comp !== 'undefined' )       
+								resolve( async_comp );      
+							else reject( 'load failed!' )
+						}
+					}),   
+				loading: {template: '<p>loading...</p>'}, 
+				error: {template:`<p style="color:red;">load failed!</p>`},delay:10,timeout:3200} 
+			} 
+		}
+})
 </script>
 </html>

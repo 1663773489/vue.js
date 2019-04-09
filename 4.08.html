@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<title></title>
+</head>
+<body>
+<div id="app">
+	<label for="enter"></label>
+	<div v-lang="color">{{num}}</div>
+	<p><button v-on:click="add">add</button></p>
+</div>
+<p><button onclick="unbind()">解绑</button></p>
+</body>
+<script type="text/javascript">
+	function  unbind(){
+		vm.$destroy();
+	}
+	Vue.directive('lang',{
+		bind:function(){
+			console.log('1 - bind');
+		},
+		inserted:function(){
+			console.log('2 - inserted');
+		},
+		update:function(){
+			console.log('3 - update');
+		},
+		componentUpdated:function(){
+			console.log('4 - componentUpdated');
+		},
+		unbind:function(){
+			console.log('5 - bind')
+		}
+	})
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			num:10,
+			color:'red'
+		},
+		methods:{
+			add:function(){
+				this.num++;
+			}
+		}
+	})
+</script>
+</html>

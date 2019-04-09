@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+	<title></title>
+</head>
+<body>
+<div id="app"></div>
+</body>
+<script type="text/javascript">
+	 const Home ={template:'<div>home</div>'}
+	 const Foo =() => import('./Foo.vue')
+	 const Bar =() =>import('./Bar.vue')
+	 const Baz =() =>import('./Baz.vue')
+	 const router = new VueRouter({
+	 	mode:'history',
+	 	routes:[
+	 	{path:'/',component:Home},
+	 	{path:'/foo',component:Foo},
+	 	{path:'/bar',component:Bar,
+	 		children:[
+	 		{path:'baz',component:Baz}]}]
+	 })
+	 new Vue({
+	 	router,
+	 	template:`<div id="app">
+	 					<h1>Basic</h1>
+	 					<ul>
+	 						<li><router-link to="/">/</router-link></li>
+							<li><router-link to="/foo">/foo</router-link></li>
+							<li><router-link to="/bar">/bar</router-link></li>
+							<li><router-link to="/bar/baz"></router-link>/bar/baz</li>	 			
+	 					</ul>
+	 					<router-view></router-view>
+	 				</div>`
+	 }).$mount('#app')
+</script>
+</html>
