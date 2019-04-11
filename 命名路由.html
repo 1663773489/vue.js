@@ -8,13 +8,12 @@
 <body>
 	<div id="app"></div>
 <script type="text/javascript">
-	cconst Home = { template: '<div>This is Home</div>' }
+const Home = { template: '<div>This is Home</div>' }
 const Foo = { template: '<div>This is Foo</div>' }
 const Bar = { template: '<div>This is Bar {{ $route.params.id }}</div>' }
 
 const router = new VueRouter({
   mode: 'history',
-  base: __dirname,
   routes: [
     { path: '/', name: 'home', component: Home },
     { path: '/foo', name: 'foo', component: Foo },

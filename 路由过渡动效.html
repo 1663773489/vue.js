@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+	<title></title>
+	<style type="text/css">
+		.fade-enter-active,.fade-leave-active{
+			transition: opacity.5s ease;
+		}
+		.fade-enter,.fade-leave-active{
+			opacity: 0
+		}
+		.child-view{
+			position: absolute;
+			transition: all.5s cublic-bezier(.55,0,.1,1);
+		}
+		.slide-left-enter,.slide-right-leave-active{
+			opacity: 0;
+			-webkit-transform:translate(30px,0);
+			transform: translate(30,0);
+		}
+		.slide-left-leave-sctive,.slide-right-enter{
+			opacity: 0;
+			-webkit-transform:translate(-30px,0);
+		}
+	</style>
+</head>
+<body>
+<div id="app">
+	<ul>
+	<li><router-link to="/"></router-link></li>
+	<li><router-link to="/parent">/parent</router-link></li>
+	<li><router-link to="/parent/foo">parent/foo</router-link></li>
+	<li><router-link to="/parent/bar">/parent/bar</router-link></li>
+</ul>
+<transition name="fade" mode="out-in">
+<router-view class="view"></router-view>
+</transition>
+</div>
+</body>
+<script type="text/javascript">
+	const Home = {template:'<h2>home</h2>'}
+	const Parent = {
+		data (){
+			return{
+				transitionName:'slide-left'
+			}
+		},
+		beforeRouteUpdate (to,from,next){
+			const toDepth = to.path.split('/').length
+			const fromDepth = from.path.split('/').length
+			this.transitionName = toDepth<fromDepth?'slide-right':'slide-right'
+			next()
+		},
+	}
+	template:`
+			<div class="parent">
+			<h2>Parent</h2>
+			<transition :name="transitionName">
+				<router-view class="child-view"></router-view>
+			</transition>
+			</div>
+				`
+	const Default = {template:'<div class="default">default</div>'}
+	const Foo = {template:'<div class="foo">foo</div>'}
+	const Bar = {template:'<div class="bar">bar</div>'}
+	const router = new VueRouter({
+		mode:"history",
+		routers:[
+		{path:'/',component:Default},
+		{path:'/parent',component:Parent,
+			children:[
+				{path:'',component:Default},
+				{path:'foo',component:Foo},
+				{path:'bar',component:Bar}]},
+		]
+	})
+	new Vue({
+		router,
+		el:'#app'
+	})
+</script>
+</html>

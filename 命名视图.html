@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+	<title></title>
+</head>
+<body>
+<div id="app">
+<ul>
+	<li><router-link to="/">/</router-link></li>
+	<li><router-link to="/other">/other</router-link></li>
+</ul>
+<router-view class="view-one"></router-view>
+<router-view class="view-two" name="a"></router-view>
+<router-view class="view-three" name="b"></router-view>
+</div>
+</body>
+<script type="text/javascript">
+	const Foo = {template:'<h1>diyige</h1>'}
+	const Bar = {template:'<h1>dierge</h1>'}
+	const Baz = {template:'<h1>disange</h1>'}
+	const router = new VueRouter({
+		routes:[
+		{path:'/',components:{
+			default:Foo,
+			a:Bar,
+			b:Baz
+		}},
+		{path:'/other',components:{
+			default:Baz,
+			a:Foo,
+			b:Bar
+		}}]
+	})
+	new Vue({
+		router,
+		el:'#app'
+
+	})
+</script>
+</html>

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 	<title></title>
 </head>
 <body>
 	<div id="app"></div>
 <script type="text/javascript">
-	const Home = { template: '<router-view></router-view>' }
+const Home = { template: '<router-view></router-view>' }
 const Default = { template: '<div>default</div>' }
 const Foo = { template: '<div>foo</div>' }
 const Bar = { template: '<div>bar</div>' }
@@ -18,7 +18,6 @@ const Foobar = { template: '<div>foobar</div>' }
 const FooBar = { template: '<div>FooBar</div>' }
 
 const router = new VueRouter({
-  mode: 'history',
   routes: [
     { path: '/', component: Home,
       children: [

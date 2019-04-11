@@ -2,7 +2,7 @@
 <html>
 <head>
 	<script src="https://unpkg.com/vue/dist/vue.js"></script>
-	<script src="/path/to/vuex.js"></script>
+	<script src="https://unpkg.com/vuex"></script>
 	<title></title>
 </head>
 <body>
@@ -17,9 +17,8 @@
 </template>
 </body>
 <script type="text/javascript">
-	
-	Vue.component('Counter',{
-		template:'#Counter',
+	import { mapGetters, mapActions } from 'vuex'
+	export default{
 		computed:mapGetters([
 			'evenOrOdd'
 		]),
@@ -28,7 +27,11 @@
 			'decrement',
 			'incrementIfOdd',
 			'incrementAsync'])
-	})
+
+	},
+	Vue.component('Counter',{
+		template:'#Counter'	
+	}),
 	new Vue({
 		el:'#app',
 		store,

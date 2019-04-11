@@ -26,7 +26,7 @@ const router = new VueRouter({
       children: [
         { path: 'foo', component: Foo, alias: '/foo' },
         { path: 'bar', component: Bar, alias: 'bar-alias' }
-        { path: 'baz', component: Baz, alias: ['/baz', 'baz-alias'] },
+        { path: 'baz', component: Baz, alias: ['/baz', ' baz-alias']},
         { path: 'default', component: Default, alias: '' },
         { path: 'nested', component: Nested, alias: 'nested-alias',
           children: [
