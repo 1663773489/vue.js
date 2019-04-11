@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <h1>Hello App!</h1>
+    <p>
+        此处 必须是 :to
+        <router-link :to="{name:'test',params:{ id:userInfo[1].idd }}">测试</router-link>     这里idd只是示例，可以是任意字段
+    </p>
+    <router-view></router-view>
+</div>
+<script>
+    const User = {
+        template: '<div>{{this.$route.params.id}}</div>'
+    }
+
+    const router = new VueRouter({
+        routes: [
+            {
+                name:"test",
+                path: '/user/:id',
+                component: User
+            }
+        ]
+    })
+    const app = new Vue({
+        router,
+        data(){
+            return {
+                userInfo:[
+                    {
+                        idd:"test1"
+                    },
+                    {
+                        idd:"test2"
+                    }
+                ]
+            }
+        }
+    }).$mount('#app')
+
+</script>
+</body>
+</html>

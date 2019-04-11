@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="/path/to/vuex.js"></script>
+	<title></title>
+</head>
+<body>
+<template id="Couter">
+<div id="app">
+	Clicked:{{$store.state.count}} times,count is {{evenOrOdd}}
+	<button @click="increment">+</button>
+	<button @click="decrement">-</button>
+	<button @click="incrementIfOdd">Increment if odd</button>
+	<button @click="incrementAsync">Increment async</button>
+</div>
+</template>
+</body>
+<script type="text/javascript">
+	
+	Vue.component('Counter',{
+		template:'#Counter',
+		computed:mapGetters([
+			'evenOrOdd'
+		]),
+		methods:mapActions([
+			'increment',
+			'decrement',
+			'incrementIfOdd',
+			'incrementAsync'])
+	})
+	new Vue({
+		el:'#app',
+		store,
+		rendr:function(H){
+				return H(Counter)
+			}
+	})
+</script>
+</html>

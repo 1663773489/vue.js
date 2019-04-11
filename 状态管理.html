@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	const store = new Vuex.Store({
+		state:{
+			name:'weish',
+			age:18
+		},
+		getters:{
+			personInfo(state){
+				return `My name is ${state.name}, I am ${state.age}`;
+			}
+		}
+		mutations:{
+			SET_AGE(stste,age){
+				commit(age,age);
+			}
+		},
+		actions:{
+			nameAsyn({commit}){
+				setTimeout(()=>{
+					commit('SET_AGE',18);
+				} ,1000);
+			}
+		},
+		modules:{
+			a:modulesA
+		}
+	})
+</script>
+</html>
