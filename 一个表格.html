@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+<style>
+    .list-enter-active {
+      transition: all .3s ease;
+    }
+    .list-leave-active {
+      transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+    .list-enter, .list-leave-to
+    /* .slide-fade-leave-active for below version 2.1.8 */ {
+      transform: translateX(10px);
+      opacity: 0;
+    }
+</style>
+<div class="demo">
+
+    <div >点击数字隐藏点击列</div>
+    <table>
+        <tbody is="transition-group" name="list" >
+            <tr key="1"  v-for="(item , index) in list" @click="change(index)" v-show="item.status == 1">
+                <td >{{item.number}}</td>
+            </tr>
+        </tbody>
+    </table>
+    {{show}}
+</div>
+<script>
+    var vue = new Vue({
+          el: '.demo',
+          data: {
+            list:[{'status':1,'number':2333},{'status':1,'number':6666}],
+            show:true,
+          },
+          methods:{
+                change:function(index){
+                    this.list[index].status = 2;
+                }
+          }
+        })
+</script>
+</body>
+</html>

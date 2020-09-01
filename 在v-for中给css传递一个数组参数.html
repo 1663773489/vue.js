@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>在v-for中给css传递一个数组参数</title>
+	<style type="text/css">
+		.main {
+		  padding-top: 4%;
+		  padding-left: 60px;
+		}
+		.content {
+		  display: flex;
+		  flex-direction: row;
+		  flex-wrap: nowrap;
+		  justify-content: flex-start;
+		  padding-top: 1%;
+		}
+		li {
+		  list-style: none;
+		  padding: 7px 0;
+		}
+		.name {
+		  padding-right: 100px;
+		  height: 22px;
+		  width: 140px;
+		  font-size: 22px;
+		  font-family: MicrosoftYaHei;
+		  font-weight: 400;
+		  color: black;
+		}
+		.value {
+		  padding-left: 60px;
+		  width: 120px;
+		  height: 20px;
+		  font-size: 25px;
+		  font-weight: 400;
+		  color: rgba(108, 231, 246, 1);
+		}
+	</style>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+<div id="box">
+    <div class="main">
+      <li v-for="(item,index) in targetAssete" :key="item.index">
+        <div class="content">
+          <div class="name">{{item.name}}</div>
+          <div
+            style="background-color:black;height:27px;width:276px; border-radius:14px 14px 14px 14px;"
+          >
+            <div v-if="index<1" :style="one_style"></div>
+            <div v-else-if="index<2" :style="two_style"></div>
+            <div v-else :style="[three_style, {width:[width_datas[index]]}]"></div>
+          </div>
+          <div class="value">{{item.value}}</div>
+        </div>
+      </li>
+    </div>
+  </div>
+</body>
+</html>
+<script type="text/javascript">
+	new Vue({
+		el:'#box',
+		data(){
+			return{
+				targetAssete:[
+					{name:'第一条',value:40},
+					{name:'第二条',value:30},
+					{name:'第三条',value:20},
+					{name:'第四条',value:10}
+				],
+				width_datas:[],
+				one_style:{
+			        background: "rgba(173, 215, 67, 1)",
+			        height: "30px",
+			        width: "40px",
+			        "border-radius": "14px"
+			      },
+			    two_style: {
+			        background: "rgba(239, 144, 58, 1)",
+			        height: "30px",
+			        width: "30px",
+			        "border-radius": "14px"
+			      },
+			    three_style: {
+			        background: "rgba(80,175,178,1)",
+			        height: "30px",
+			        width:"20px",
+			        "border-radius": "14px"
+			      },
+				}
+			},
+		methods:{
+		 getType(){
+	        let sum = 0;
+	        for (var i = 0; i < this.targetAssete.length; i++) {
+	          sum += this.targetAssete[i].value;
+	        }
+	        var numbers = [];
+	        for (var a = 0; a < this.targetAssete.length; a++) {
+	          numbers.push(
+	            ((this.targetAssete[a].value / sum) * 100).toFixed(2) + "%"
+	          );
+	        }
+	        this.width_datas = numbers;
+	        this.one_style.width = numbers[0];
+	        this.two_style.width = numbers[1];
+      		}
+		},
+		mounted(){
+			this.getType()
+	}
+})
+</script>

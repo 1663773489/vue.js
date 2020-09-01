@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> 复选框全选、全不选、反选、必选一个</title>
+        <script language="javascript">
+            //表单验证
+            function check(){               
+                var ids = document.getElementsByName("ids");               
+                var flag = false ;               
+                for(var i=0;i<ids.length;i++){
+                    if(ids[i].checked){  
+                        console.log(ids);
+                        flag = true ;
+                        alert(ids[i]);
+                        break ;
+                    }
+                }
+                if(!flag){
+                    alert("请最少选择一项！");
+                    return false ;
+                }
+            }
+            //全选
+            function selectAll(){
+                var ids = document.getElementsByName("ids");                           
+                for(var i=0;i<ids.length;i++){
+                    ids[i].checked=true;
+                }
+            }
+            //全不
+            function selectNone(){
+                var ids = document.getElementsByName("ids");                           
+                for(var i=0;i<ids.length;i++){
+                    ids[i].checked=false;
+                }
+            }
+            //反选
+            function selectInvert(){
+                var ids = document.getElementsByName("ids");                           
+                for(var i=0;i<ids.length;i++){
+                    if(ids[i].checked)
+                        ids[i].checked=false ;
+                    else
+                        ids[i].checked=true ;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <form action="#" onsubmit="return check();">
+        <table border="0">
+            <tr><td><input type="checkbox" name="ids">音乐</td></tr>
+            <tr><td><input type="checkbox" name="ids">短信</td></tr>
+            <tr><td><input type="checkbox" name="ids">图片</td></tr>
+            <tr><td><input type="checkbox" name="ids">电子书</td></tr>
+            <tr><td><input type="checkbox" name="ids">铃声</td></tr>
+            <tr><td><input type="checkbox" name="ids">漫画</td></tr>
+            <tr><td><input type="checkbox" name="ids">游戏</td></tr>
+            <tr><td><input type="checkbox" name="ids">杂志</td></tr>
+            <tr><td><input type="checkbox" name="ids">新闻</td></tr>
+            <tr>
+                <td>
+                    <a href="#" onclick="selectAll();">全选</a>&nbsp;
+                    <a href="#" onclick="selectNone();">全不</a>&nbsp;
+                    <a href="#" onclick="selectInvert();">反选</a>
+                </td>
+            </tr>
+            <tr><td><input type="submit" value="提交"></td></tr>
+        </table>
+        </form>
+</body>
+</html>

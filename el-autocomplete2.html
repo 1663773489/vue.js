@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div id="app">
+	<el-autocomplete type="text" v-model="city"
+	:fetch-suggestions="querySearch"
+	@select="handleSelect"
+	></el-autocomplete>
+	<el-button @click = "search">搜索</el-button>
+</div>
+</body>
+<script type="text/javascript">
+	const API_PROXY = "https://bird.ioliu.cn/v1/?url=";
+	new Vue({
+		el:'#app',
+		data(){
+			return{
+				city:"",
+				cityname:[]
+			}
+		},
+		methods:{
+			search:function(){
+				var _this = this;
+      			var a = API_PROXY +"http://v.juhe.cn/weather/index?cityname=%E5%8C%97%E4%BA%AC&dtype=&forma&key=98cd10911abcf8547af7579df131cac3";
+			     var c = this.city;
+			     var b = {
+			        params: {
+			          cityname: c
+			        }
+			      };
+			     this.$axios
+			        .get(a, b)
+			        .then(function(response) {
+			          _this.results = response.data.result.sk;
+			          _this.result2s = response.data.result;
+			          _this.result3s = response.data.result.future;
+			          console.log(_this.result2s);
+			          console.log(_this.result3s);
+			        })
+			        .catch(function(error) {
+			          console.log(error);
+			        });
+  				},
+			querySearch(queryString,callback){
+				var cityname = this.cityname;
+				callback(cityname);
+			},
+			handleSelect(item){
+ 				console.log(item)
+			},
+			loadall(){
+				[this.city]
+			}
+			
+		},
+	mounted(){
+			this.cityname = this.loadall()
+		}
+	})
+</script>
+</html>

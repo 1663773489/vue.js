@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+	<title></title>
+</head>
+<body>
+<div id="app">
+	<ul>
+		<li><router-link to="/">/</router-link></li>
+		<li><router-link to="/foo">/foo</router-link></li>
+		<li><router-link to="/bar">/bar</router-link></li>
+		<li><router-link to="/baz">/baz</router-link></li>
+		<li><router-link to="/qux">/qux</router-link></li>
+		<li><router-link to="/qux-async">/qux-async</router-link></li>
+		<li><router-link to="/quux/1">/quux/1</router-link></li>
+		<li><router-link to="/quux/2">/quux/2</router-link></li>
+	</ul>
+	<router-view class="view"></router-view>
+</div>
+</body>
+<script type="text/javascript">
+	const Home = {template:'<div>home</div>'}
+	const Foo = {template:'<div>foo</div>'}
+	const Bar = {template:'<div>bar</div>'}
+	function guardRoute (to,from,next){
+		if(window.confirm(`Navigate to ${to.path}?`)){
+			next()
+		}else if (window.confirm(`Redirect to /baz?`)){
+			next('/baz')
+		}else{
+			next(false)
+		}
+	}
+	const Baz = {
+		data(){
+			return {saved:false}
+		},
+		template:`
+					<div>
+					<p>baz ({{saved ? 'saved' : 'not saved' }})
+					</p>
+					<button @click = "saved = true">save</button>
+					</div>
+				`,
+		beforeRouteLeave(to,from,next){
+		if(this.saved || window.confirm('Not saved,are you sure you want to navigate away')){
+			next()
+		}else{
+			next(false)
+		}
+	}
+}
+	const Qux = {
+		data(){
+			return{
+				msg:null
+			}
+		},
+		template:'<div>{{msg}}</div>',
+		beforeRouteEnter(to,from,next){
+			setTimeout(function(){
+				next(vm =>{
+					vm.msg = 'Qux'
+				})
+			},300)
+		}
+	}
+	const Quux  = {
+		data(){
+			return{
+				prevID:0
+			}
+		},
+		template:`
+					<div>
+						id:{{$route.params.id}} prevID:{{prevID}}
+					</div>`,
+		beforeRouteUpdate(to,from,next){
+			this.prevID = from.params.id
+			next()
+		}
+	}
+	const router = new VueRouter({
+		mode:'history',
+		routes:[
+		{path:'/',component:Home},
+		{path:'/foo',component:Foo,beforeEnter:guardRoute},
+		{path:'/bar',component:Bar,meta:{needGuard:true}},
+		{path:'/baz',component:Baz},
+		{path:'/qux',component:Qux},
+		{path:'/qux-async',component:resolve=>{
+			setTimeout(()=>{
+				resolve(Qux)
+			},0)
+		}},
+		{path:'/quux/:id',component:Quux}
+	]
+	})
+	router.beforeEach((to,from,next)=>{
+		if(to.matched.some(m=>m.meta.needGuard)){
+			guardRoute(to,from,next)
+		}else{
+			next()
+		}
+	})
+	var vm = new Vue({
+		router,
+		el:'#app',
+
+	})
+</script>
+</html>

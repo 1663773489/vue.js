@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title></title>
+</head>
+<body>
+<div id="app">
+	<h1>{{ msg }}</h1>
+	<h2>{{ author }}</h2>
+	<ul v-for="music in musics">
+		<li>
+			 {{ music.name }}
+		</li>
+		<br>
+		<li>
+        <img :src="music.album.picUrl" style="width:200px;">
+      </li>
+
+	</ul>
+</div>
+</body>
+<script type="text/javascript">
+	const API_PROXY = 'https://bird.ioliu.cn/v1/?url='
+	var vm = new Vue({
+		el:'#app',
+		name: 'hello',
+		data () {
+		    return {
+		      msg:'vue调用网易云接口',
+		      author:'泥猴啊',
+		      musics:[]
+		    }
+		  },
+		mounted: function () {
+			var _this = this
+		    axios.get(API_PROXY +'http://music.163.com/api/playlist/detail?id=19723756')
+		    .then(function (res) {  _this.musics = res.data.result.tracks
+		      console.log(_this.musics)
+		    }, function (error) {
+		      console.log(error)
+		    })
+		  }
+
+
+	})
+</script>
+</html>

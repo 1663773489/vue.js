@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+  <title>状态动画与侦听器</title>
+</head>
+<style type="text/css">
+  .content {
+  display: inline-flex;
+  flex-direction: row; /* 决定项目的排列方向水平方向*/
+  flex-wrap: nowrap; /*决定项目是否可以换行*/
+  justify-content: flex-start; /*决定项目在主轴上的对齐方式*/
+}
+.items {
+  width: 67px;
+  height: 92px;
+  background: rgba(0, 92, 137, 1);
+  border: 1px solid rgba(255, 255, 255, 1);
+  padding: 0px 0px 8px 0px;
+  text-align: center;
+}
+.times {
+  width: 1000px;
+  height: 90px;
+}
+.doc {
+  padding: 0px 8px 0px 8px;
+}
+</style>
+<body>
+<div id="animated-number-demo">
+    <p>{{animatedNumber}}</p>
+</div>
+</body>
+<script>
+  new Vue({
+    el:"#animated-number-demo",
+    data:{
+      number:0,
+      teweenedNumber:0,
+    },
+    computed:{
+      animatedNumber:function(){
+        return this.teweenedNumber.toFixed(0);
+      },
+    },
+    watch:{
+      number:function(newValue){
+        TweenLite.to(this.$data,0.5,{teweenedNumber:newValue});
+      },
+    },
+    methods:{
+      getData(){
+        this.number = parseInt(Math.random() * 100000)
+      }
+    },
+    mounted(){
+     setInterval(() => {
+       this.getData()
+     },3000) 
+    }
+  })
+</script>
+</html>

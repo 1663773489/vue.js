@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script>
+function show(){
+    var show = document.getElementById("showContent");
+    var content = document.getElementById("content"); 
+    show.innerHTML = content.value;
+}
+</script>
+<h1 id="showContent">Hello World!</h1>
+<input id="content" name="content"/>
+<button onClick="show()">把内容加载在页面上</button>
+</body>
+</html>

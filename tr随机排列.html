@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <title></title>
+        <link href="css/mui.min.css" rel="stylesheet" />
+        <style type="text/css">
+           
+            .scrolldiv{
+                height: 120px;
+                overflow: hidden;
+            }
+            table{
+                width: 100%;
+               
+        }
+        table tr{
+            line-height:24px;
+        }
+        table td{
+            text-align: center;
+            color: #F4C7FD;
+        }
+        table tr:nth-child(odd){
+            background: #8C49F1;
+        }
+        table tr:nth-child(even){
+            background: #7C35EB;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <div class="scrolldiv" id="scrolldiv">
+        <table class="" id="tableid">
+                 <tr>
+                 <td>{1$vo.time}</td>
+                 <td>{$vo.prize_name}</td>
+                 <td>受理成功</td>
+                 </tr>
+                 <tr>
+                 <td>{2$vo.time}</td>
+                 <td>{$vo.prize_name}</td>
+                 <td>受理成功</td>
+                 </tr>
+                 <tr>
+                 <td>{3$vo.time}</td>
+                 <td>{$vo.prize_name}</td>
+                 <td>受理成功</td>
+                 </tr>
+                 <tr>
+                 <td>{4$vo.time}</td>
+                 <td>{$vo.prize_name}</td>
+                 <td>受理成功</td>
+                 </tr>
+                  <tr>
+                 <td>{5$vo.time}</td>
+                 <td>{$vo.prize_name}</td>
+                 <td>受理成功</td>
+                 </tr>
+                  <tr>
+                 <td>{6$vo.time}</td>
+                 <td>{$vo.prize_name}</td>
+                 <td>受理成功</td>
+                 </tr>
+        </table>
+        <table class="" id="tableid2">
+        </table>
+        </div>
+        </div>
+        <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+                var table = document.getElementById("tableid");
+                var scrolldiv = document.getElementById("scrolldiv");
+                let length = table.getElementsByTagName("tr").length;
+                var speed = 40;
+                function Marquee() {
+                if (scrolldiv.scrollTop > table.clientHeight) {
+                    scrolldiv.scrollTop = 0;
+                } else {
+                    scrolldiv.scrollTop++;
+                }
+        }
+            if((length*24) > scrolldiv.clientHeight){
+                let table2 = document.getElementById("tableid2");
+                table2.innerHTML = table.innerHTML;
+                var MyMar = setInterval(Marquee, speed);
+            }           
+        </script>
+    </body>
+</html>

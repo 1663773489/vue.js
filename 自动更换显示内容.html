@@ -1,0 +1,14 @@
+  <script type="text/javascript">
+
+tips = new Array(3);
+tips[0] = '内容1';
+tips[1] = '内容2';
+tips[2] = '内容3';
+function show(){
+    index = Math.floor(Math.random() * tips.length);
+    document.getElementById('msg').innerHTML = tips[index];
+}
+setInterval(show(),1000*60);
+
+  </script>
+  <div id="msg"></div>

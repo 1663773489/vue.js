@@ -1,0 +1,61 @@
+<html>
+<head>
+	<title></title>
+	<style type="text/css">	
+	.text{
+		float: right;
+		width: 73%;
+		vertical-align: center;
+	}
+	</style>
+</head>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+<div id="app">
+	<ul type="none" v-for="result in results">
+		<li>
+			<img v-bind:src="result.thumbnail_pic_s">
+			<span class="text">
+				<a v-bind:href="result.url" style="text-decoration:none;"><h2>{{result.title}}</h2></a>
+				<input type="text" >
+				<button v-on:click="search">搜索</button>
+			</span>
+			<div style="height:1px;background-color:gray;"></div>
+		</li>
+	</ul>
+</div>
+</body>
+<script type="text/javascript">
+	const API_PROXY = 'https://bird.ioliu.cn/v1/?url='
+	//定义一个常量代理API
+	var vm = new Vue({
+		el:'#app',
+		data(){
+			return{
+			results:[],
+		}
+		},
+		methods:{
+			search:function(){
+				this.result
+			}
+		},
+		mounted(){
+			var _this = this
+			axios.get(API_PROXY + 'http://v.juhe.cn/weather/index?cityname=&dtype=&format=&key=98cd10911abcf8547af7579df131cac3',{
+				params:{
+					cityname:''
+				}
+			})
+			//组合
+			.then(function (res) {
+				//赋值
+		      console.log(res)
+		    }, function (error) {
+		      console.log(error)
+			})
+		},
+	})
+</script>
+</html>

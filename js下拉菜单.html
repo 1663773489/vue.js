@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<style>
+	    ul,li {
+	    	list-style: none;
+	    	margin: 0;
+	    	padding: 0;
+	    }
+		.btn {
+			width: 120px;
+			height: 35px;
+			margin: 0 auto;
+			background: #333;
+			color: #fff;
+			text-align: center;
+			line-height: 35px;
+			border-radius: 3px;
+		}
+
+		.menu {
+			width: 120px;
+			height: 0px;
+			margin: 5px auto;
+			background: #E60026;
+			overflow: hidden;
+		}
+
+		.menu a {
+			display: block;
+			text-align: center;
+			line-height: 30px;
+			color: #fff;
+			text-decoration: none;
+		}
+	</style>
+<body>
+<ul>
+		<li class="btn">点我
+			<ul class="menu">
+				<li><a href="#">菜单一</a></li>
+				<li><a href="#">菜单二</a></li>
+				<li><a href="#">菜单三</a></li>
+			</ul>
+		</li>
+	</ul>
+</body>
+<script>
+	var btn = document.getElementsByTagName('li')[0],
+	    t_over,
+	    t_leave,
+	    menu = btn.getElementsByTagName('ul')[0],
+	    h = menu.offsetHeight;
+	btn.onmouseover = function() {
+		
+		add();
+	}
+	btn.onmouseout = function() {
+		
+		sub();
+	}
+	function add() {
+		h += 1;
+		if (h <= 100) {
+			menu.style.height = h + 'px';
+			t_over = setTimeout(add,10);
+		}else {
+			return;
+		}
+		console.log(h)
+	}
+	function sub() {
+		h -= 1;
+		if (h > 0) {
+			menu.style.height = h + 'px';
+			t_leave = setTimeout(sub,10);
+		}else {
+			menu.style.height = '0px'
+			return;
+		}
+	}
+</script>
+</html>

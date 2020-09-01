@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+	<title></title>
+</head>
+<body>
+	<div id="app">
+		<el-date-picker
+		v-model="value6"
+		type="daterange"
+		range-separator="至"
+		start-placeholder="开始日期"
+		end-placeholder="结束日期"
+		format="yyyy 年 MM 月 dd 日"
+		value-format="yyyy-MM-dd"
+		v-on:change = "change1"
+		>  
+	</el-date-picker>  
+	<el-checkbox-group 
+	v-model="checkedItems"
+	>
+		<el-checkbox v-for ="item in items"
+	v-bind:value =" item.value"
+	:label="item" :key="item" name="item" 
+	value="ajksa">
+	{{item}}
+		</el-checkbox>
+	</el-checkbox-group>
+	<span>{{checkedItems}}</span>
+	<input type="button" @click="submite" value="提交">
+</div>
+</body>
+<script type="text/javascript"> 
+	Date.prototype.format=function (){
+		var s='';
+		s+=this.getFullYear()+'-';  
+		s+=(this.getMonth()+1)+"-"; 
+		s+= this.getDate(); 
+		console.log(s);  
+		return(s);   
+	};
+	var app = new Vue({
+		el:'#app',
+		data(){
+			return{
+				value6:"",
+				items:[],
+				checkedItems:[]
+			}
+		},
+		methods:{
+			checked(){
+				var x = document.getElementsByName("item".value);
+				alert(x);
+			},
+			submite:function(){
+				var obj = document.getElementsByName("item");
+				var flag;
+				for(var i =0 ;i <obj.length;i++){
+					if(obj[i].checked){
+						console.log(obj[i].value)
+						flag=true;
+						alert("您已选择"+obj[i].value+"- "+"值班");
+						break;
+					}
+				}
+				if(!flag){
+					alert("请至少选择一天");
+					return false;
+				}
+			},
+			change1(begin,end){
+				var begin = this.value6[0];
+				console.log(begin);
+				var end = this.value6[1];
+				var item = new Array(); 
+				console.log(item);
+				this.items = item;
+				console.log(item);
+				var ab = begin.split("-");
+				var ae = end.split("-");
+				var db = new Date();
+				db.setUTCFullYear(ab[0], ab[1]-1, ab[2]);
+				var de = new Date();
+				de.setUTCFullYear(ae[0], ae[1]-1, ae[2]);
+				var unixDb=db.getTime();
+				var unixDe=de.getTime();
+				console.log(unixDe);
+				for(var k=unixDb;k<=unixDe;){
+					item.push((new Date(parseInt(k))).format().toString());
+					k=k+24*60*60*1000;
+				}
+				return item;
+			}
+		}
+	});
+</script>
+</html>

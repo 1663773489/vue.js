@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuex"></script>
+</body>
+</head>
+<body>
+<div id="app">
+	<Component1></Component1>
+</div>
+</body>
+<script type="text/javascript">
+	const store = new Vuex.Store({
+		state:{
+			aaa:''
+		},
+		mutations:{
+			increment(state){
+                 state.aaa = "qiqihaer"
+			}
+		}
+	})
+	store.commit('increment')
+	const Component1 = {
+		template:'<div>{{aaa}}</div>',
+		computed:{
+			aaa(){
+				return store.state.aaa
+			}
+		}
+	}
+	new Vue({
+		el:'#app',
+		components:{
+			Component1
+		}
+	})
+</script>
+</html>

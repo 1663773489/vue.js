@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+    	.box{
+        position: relative;
+        width:100px;
+        height:100px;
+        background: #fff;
+        border-radius:5px;
+        text-align: center;
+        line-height:100px;
+        text-shadow:1px 1px 1px #ccc;
+        font-weight:800;
+        cursor: pointer;
+        box-shadow:1px 1px 10px 1px #ccc;
+
+        /*上面是基础样式，根据需求修改，下面的代码实现3d翻转效果*/
+        transform-style: preserve-3d;
+        transition: all .8s;
+    }
+    .box:after{
+        content: '';
+        position: absolute;
+        width:100px;
+        height:100px;
+        /*牌背面的图片*/
+        background: url("images/dul_head.png");
+        border-radius:5px;
+        transform-origin:left ;
+        box-shadow:1px 1px 10px 1px #ccc;
+
+        /*将after伪类折叠到box的背面，作为牌的反面*/
+        top:0;
+        left:100px;
+        transform:rotateY(180deg);
+    }
+    .box:hover{
+        transform:rotateX(180deg);
+    }
+    </style>
+</head>
+<body>
+    <div class="box">123</div>
+</body>
+</html>

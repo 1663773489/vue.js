@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title></title>
+</head>
+<body>
+
+<h3>演示如何访问 Date 字段</h3>
+
+<input type="date" id="myDate">
+
+<p>点击按钮来获得 date 字段的日期。</p>
+
+<button onclick="myFunction()">试一下</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myDate").value;
+    document.getElementById("demo").innerHTML = x;
+}
+
+function getYearAndMonthAndDay(start,end){
+        var date_all=[],i=0;
+        var startTime = getDate(start);
+        var endTime = getDate(end);
+        while((endTime.getTime()-startTime.getTime())>=0){
+          var year = startTime.getFullYear();
+          var month = (startTime.getMonth()+1).toString().length==1?"0"+(startTime.getMonth()+1).toString():(startTime.getMonth()+1).toString();
+          var day = startTime.getDate().toString().length==1?"0"+startTime.getDate():startTime.getDate();
+          date_all[i]=year+"-"+month+"-"+day;
+          startTime.setDate(startTime.getDate()+1);
+          i+=1;
+        }
+        return date_all;
+    };
+</script>
+</body>
+</html>

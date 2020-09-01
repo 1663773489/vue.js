@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<input type="checkbox" value="1" name="username" v-model="checkedNames">
+<label for="123">123</label>
+<input type="checkbox" value="2" name="username" v-model="checkedNames">
+<label for="123">123</label>
+<input type="checkbox" value="2" name="username" v-model="checkedNames">
+<label for="123">123</label>
+<input type="checkbox" value="3" name="username" v-model="checkedNames">
+<label for="123">123</label>
+<input type="checkbox" value="4" name="username" v-model="checkedNames">
+<label for="123">123</label>
+<input type="checkbox" value="5" name="username" v-model="checkedNames">
+<label for="123">123</label>
+<button value="删除" onclick="delete">ewedw</button>
+</div>
+</body>
+<script type="text/javascript">
+    var a  = new Vue({
+        el:'#app',
+        data:{
+            checkedNames:[]
+        },
+        methods:{
+            delete1:function(){
+                var userids = this.checkedNames; //申明数组保存所有被选中checkbox背后的值
+                var users = document.getELementsByName("username"); //得到所有的checkbox
+console.log('users');
+                for(var i=0; i<users.length; i++){
+                        if(users[i].checked){ //如果checkbox被选
+                        console.log(users[i].value);
+                       userids.$push(users[i].value); //将被选中checkbox背后的值添加到数
+
+                        }    
+                }
+        }
+    }
+})
+</script>
+</html>

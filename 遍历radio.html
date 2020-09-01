@@ -1,0 +1,32 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis" />
+<title>無題ドキュメント</title>
+<script language="javascript">
+function _onclick() {
+	var radios = document.getElementsByName("search-radio");
+	for (i = 0; i < radios.length; i++) {
+		if (radios[i].checked) {
+			alert(radios[i].value);
+			break;
+		}
+	}
+}
+</script>
+</head>
+<body>
+<div><ol>
+ <li><input type="radio"  name="search-radio" value="1">1</li>
+ <li><input type="radio"  name="search-radio" value="2">2</li>
+ <li><input type="radio"  name="search-radio" value="3">3</li>
+ <li><input type="radio"  name="search-radio" value="4">4</li>
+ <li><input type="radio"  name="search-radio" value="5">5</li>
+ <li><input type="radio"  name="search-radio" value="6">6</li>
+ <li><input type="radio"  name="search-radio" value="7">7</li>
+ <li><input type="radio"  name="search-radio" value="8">8</li> 
+</ol></div>
+<input type="button" value="GetValue" onclick="_onclick()" />
+</body>
+</html>
