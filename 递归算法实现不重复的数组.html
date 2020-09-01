@@ -1,0 +1,21 @@
+<div>
+    <button onclick="addNum">点击输出数组</button>
+</div>
+<script>
+    var arr = new Array(5);
+    var rand, i = 0
+    function addNum(rand, i) {
+        rand = parseInt(Math.random() * 31 + 2, 10);
+        if (arr[4] != undefined) {
+            return arr;
+        } else {
+            if (arr[0] - rand != 0 && arr[1] - rand != 0 && arr[2] - rand != 0 && arr[3] - rand != 0) {
+                arr[i] = rand;
+                i++;
+            }
+            return addNum(rand, i)
+        }
+    }
+    addNum(rand, i);
+    console.log(arr);
+</script>

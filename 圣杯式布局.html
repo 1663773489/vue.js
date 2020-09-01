@@ -1,0 +1,69 @@
+/**圣杯布局代码**/
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+</head>
+
+<body>
+    <div id="hd">
+        Header
+    </div>
+    <div id="bd">
+        <div id="middle">
+            middle
+        </div>
+        <div id="left">
+            left
+        </div>
+        <div id="right">
+            right
+        </div>
+    </div>
+</body>
+
+</html>
+<style type="text/css">
+    #hd {
+        height: 50px;
+        background: #666;
+        text-align: center;
+    }
+
+    #bd {
+        /*左右栏通过添加负的margin放到正确的位置了，此段代码是为了摆正中间栏的位置*/
+        padding: 0 200px 0 180px;
+        height: 100px;
+    }
+
+    #middle {
+        float: left;
+        width: 100%;
+        height: 100px;
+        background: blue;
+    }
+
+    #left {
+        float: left;
+        width: 180px;
+        height: 100px;
+        margin-left: -100%;
+        background: #0c9;
+        /*中间栏的位置摆正之后，左栏的位置也相应右移，通过相对定位的left恢复到正确位置*/
+        position: relative;
+        left: -180px;
+    }
+
+    #right {
+        float: left;
+        width: 200px;
+        height: 100px;
+        margin-left: -200px;
+        background: #0c9;
+        position: relative;
+        right: -200px;
+    }
+</style>
