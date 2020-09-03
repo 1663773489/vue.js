@@ -1,84 +1,91 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-		<title></title>
-		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
-		<style type="text/css">
-			#box{
-				width:300px;
-				height:400px;
-				border:1px solid blue;
-				margin:0 auto;
-			}
-			.inTer{
-				width:280px;
-				height:280px;
-				border:1px solid deeppink;
-				margin:0 auto;
-				margin-top:10px;
-				overflow-y:auto;
-			}
-			.textarea{
-				display:block;
-				width: 276px;
-				height:65px;
-				margin:0 auto;
-				margin-top:5px;
-			}
-			#btn{
-				display:block;
-				float:right;
-				margin-right:10px;
-				margin-top:5px;
-			}
-			p{
-				display:inline-block;
-				border-radius:5px;
-				background:#dcdcdc;
-				font-size:12px;
-				padding:5px 5px;
-				margin:5px 0;
-				margin-left:5px;
-				max-width:140px;
-				word-wrap: break-word;
-			}
-		</style>
-	</head>
-	<body>
-		<div id="box">
-			<div class="inTer" id="father">
-					<p>你好</p ></br>
-			</div>
-			<el-input class="textarea" type="textarea" :rows="2" placeholder="请输入内容" v-model="input_params.dio"></el-input>
-			<el-button id="btn" @click="a">执行</el-button>
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<title></title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<style type="text/css">
+		#box {
+			width: 300px;
+			height: 400px;
+			border: 1px solid blue;
+			margin: 0 auto;
+		}
+
+		.inTer {
+			width: 280px;
+			height: 280px;
+			border: 1px solid deeppink;
+			margin: 0 auto;
+			margin-top: 10px;
+			overflow-y: auto;
+		}
+
+		.textarea {
+			display: block;
+			width: 276px;
+			height: 65px;
+			margin: 0 auto;
+			margin-top: 5px;
+		}
+
+		#btn {
+			display: block;
+			float: right;
+			margin-right: 10px;
+			margin-top: 5px;
+		}
+
+		p {
+			display: inline-block;
+			border-radius: 5px;
+			background: #dcdcdc;
+			font-size: 12px;
+			padding: 5px 5px;
+			margin: 5px 0;
+			margin-left: 5px;
+			max-width: 140px;
+			word-wrap: break-word;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="box">
+		<div class="inTer" id="father">
+			<p>你好</p></br>
 		</div>
-	</body>
+		<el-input class="textarea" type="textarea" :rows="2" placeholder="请输入内容" v-model="input_params.dio"></el-input>
+		<el-button id="btn" @click="a">执行</el-button>
+	</div>
+</body>
+
 </html>
 <script>
 	new Vue({
-		el:'#box',
-		data(){
-			return{
-			input_params:{
-					dio:''
+		el: '#box',
+		data() {
+			return {
+				input_params: {
+					dio: ''
 				},
-			message	:""
+				message: ""
 			}
 		},
-		methods:{
-			
-				let num=20
-				const obj ={
-					num:10,
-				func:(a)=>{
-					this.num+=5;
+		methods: {
+
+			let num=20
+				const obj = {
+				num: 10,
+				func: (a) => {
+					this.num += 5;
 					console.log(this.num);
-					}
+				}
 			},
 		}
 	})
-		
-	</script>
+
+</script>

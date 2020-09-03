@@ -1,42 +1,38 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title></title>
 	<script type="text/javascript">
-		function loadXMLDoc(){
+		function loadXMLDoc() {
 			var xmlhttp;
-			var txt,x,i;
-			if(window.XMLHttpRequest)
-			{
+			var txt, x, i;
+			if (window.XMLHttpRequest) {
 				xmlhttp = new XMLHttpRequest;
 			}
-			else
-			{
+			else {
 				xmlhttp = new ActiveObject("Microsoft.XMLHTTP");
 			}
-			xmlhttp.onreadystatechange = function()
-			{
-				if(xmlhttp.readyState == 4&&xmlhttp.status==200)
-				{
+			xmlhttp.onreadystatechange = function () {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 					xmlDoc = xmlhttp.responseXML;
 					txt = "";
-					x=xmlDoc.getElementsByTagName('ARTIST');
-					for (i=0;i<x.length;i++)
-					{
-						txt=txt+x[i].childNodes[0],nodeValue +"<br>";
+					x = xmlDoc.getElementsByTagName('ARTIST');
+					for (i = 0; i < x.length; i++) {
+						txt = txt + x[i].childNodes[0], nodeValue + "<br>";
 					}
-					document.getElementsById("myDiv").innerHTML=txt;
+					document.getElementsById("myDiv").innerHTML = txt;
 				}
 			}
-			xmlhttp.open("GET","C:/Users/Administrator.WIN7-1903051625/Desktop/jia/vue.js/.xml","true");
+			xmlhttp.open("GET", "C:/Users/Administrator.WIN7-1903051625/Desktop/jia/vue.js/.xml", "true");
 			xmlhttp.send();
 		}
 	</script>
-</head
-<body>
-	<h2>我收藏的</h2>
+</head <body>
+<h2>我收藏的</h2>
 <div id="myDiv">
 	<button type="button" onclick="loadXMLDoc()">获取</button>
 </div>
 </body>
+
 </html>

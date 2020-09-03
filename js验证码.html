@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>验证码</title>
 </head>
+
 <body>
-<div class="input">
-	<!-- onblur事件会在用户失去焦点的时候发生 -->
-	<input type="text" name="u" id="t1" placeholder="验证码" onblur="but()">
-	<span id="discode"></span>
-	<input type="button" value="换一换" class="c" style="height: 20px;" onclick="createCode()">
-</div>
+	<div class="input">
+		<!-- onblur事件会在用户失去焦点的时候发生 -->
+		<input type="text" name="u" id="t1" placeholder="验证码" onblur="but()">
+		<span id="discode"></span>
+		<input type="button" value="换一换" class="c" style="height: 20px;" onclick="createCode()">
+	</div>
 </body>
 <script type="text/javascript">
 	var code;
-	function createCode(){
-		code ="";
+	function createCode() {
+		code = "";
 		var codeLength = 4;
-		var selectChar = new Array(0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f','g','h','i','j','k',
-  'l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
-		for(var i =0;i <codeLength;i++){
-			var charIndex = Math.floor(Math.random()*36);
-			code+=selectChar[charIndex];
+		var selectChar = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
+			'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
+		for (var i = 0; i < codeLength; i++) {
+			var charIndex = Math.floor(Math.random() * 36);
+			code += selectChar[charIndex];
 		}
 		document.getElementById('discode').style.fontFamily = "Fixedsys";
 		document.getElementById('discode').style.letterSpacing = "5px";
 		document.getElementById('discode').style.color = "#0ab000";
 		document.getElementById('discode').innerHTML = code;
 	}
-	function but(){
+	function but() {
 		var val1 = document.getElementById('t1').value;
 		var val2 = code;
-		if(val1 != val2){
+		if (val1 != val2) {
 			alert("验证码不正确")
 			document.getElementById('t1').value = "";
 		}
 	}
 </script>
+
 </html>

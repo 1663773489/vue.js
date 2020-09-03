@@ -1,79 +1,77 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
-<script src="https://cdn.jsdelivr.net/npm/color-js@1.0.3"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
+	<script src="https://cdn.jsdelivr.net/npm/color-js@1.0.3"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<title>状态动画</title>
-<style type="text/css">
-	.example-color-preview{
-		display: inline-block;
-		width:50px;
-		height: 50px;
-	}
-</style>
+	<style type="text/css">
+		.example-color-preview {
+			display: inline-block;
+			width: 50px;
+			height: 50px;
+		}
+	</style>
 </head>
+
 <body>
-<div id="example">
-	<input
-		v-model="colorQuery"
-		v-on:keyup.enter="updateColor"
-		placeholder="enter a color">
-	<button v-on:click="updateColor">UpDate</button>
-	<p>Preview:</p>
-	<span
-		v-bind:style="{backgroundColor:tweenedCSSColor}"
-		class="example-color-preview">
-	</span>
-	<p>{{tweenedCSSColor}}</p>
-</div>
+	<div id="example">
+		<input v-model="colorQuery" v-on:keyup.enter="updateColor" placeholder="enter a color">
+		<button v-on:click="updateColor">UpDate</button>
+		<p>Preview:</p>
+		<span v-bind:style="{backgroundColor:tweenedCSSColor}" class="example-color-preview">
+		</span>
+		<p>{{tweenedCSSColor}}</p>
+	</div>
 </body>
 <script type="text/javascript">
 	var Color = net.brehaut.Color
 	new Vue({
-		el:"#example",
-		data:{
-			colorQuery:"",
-			color:{
-				red:0,
-				green:0,
-				blue:0,
-				alpha:1
+		el: "#example",
+		data: {
+			colorQuery: "",
+			color: {
+				red: 0,
+				green: 0,
+				blue: 0,
+				alpha: 1
 			},
-			tweenedColor:{}
+			tweenedColor: {}
 		},
-		created:function(){
+		created: function () {
 			this.tweenedColor = Object.assign({}, this.color)
-			},
-		watch:{
-			color:function () {
-				function animate(){
+		},
+		watch: {
+			color: function () {
+				function animate() {
 					if (TWEEN.update()) {
 						requestAnimationFrame(animate)
 					}
 				}
 				new TWEEN.Tween(this.tweenedColor)
-					.to(this.color,750)
+					.to(this.color, 750)
 					.start()
 				animate()
-				}
-			},
-		computed:{
-			tweenedCSSColor:function(){
+			}
+		},
+		computed: {
+			tweenedCSSColor: function () {
 				return new Color({
-					red:this.tweenedColor.red,
-					green:this.tweenedColor.green,
-					blue:this.tweenedColor.blue,
-					alpha:this.tweenedColor.alpha
+					red: this.tweenedColor.red,
+					green: this.tweenedColor.green,
+					blue: this.tweenedColor.blue,
+					alpha: this.tweenedColor.alpha
 				}).toCSS()
 			}
 		},
-		methods:{
-			updateColor:function(){
+		methods: {
+			updateColor: function () {
 				this.color = new Color(this.colorQuery).toRGB()
 				this.colorQuery = ''
+			}
 		}
-	}
-})
+	})
 </script>
+
 </html>

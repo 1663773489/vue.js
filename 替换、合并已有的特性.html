@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title></title>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
 	<style type="text/css">
-		.data-picker-dark{
+		.data-picker-dark {
 			background: blue;
 			width: 100px;
 			height: 100px;
 		}
-		.form-control{
-			background:pink;
+
+		.form-control {
+			background: pink;
 			width: 200px;
 			height: 200px;
 		}
 	</style>
 </head>
+
 <body>
-<div id="a">
-	<my-component data-date-picker="activated" class="data-picker-dark"
-	></my-component>
-</div>
+	<div id="a">
+		<my-component data-date-picker="activated" class="data-picker-dark"></my-component>
+	</div>
 </body>
 <script>
-	Vue.component('my-component',{
-		template:'<input type="date" class="form-control">'
+	Vue.component('my-component', {
+		template: '<input type="date" class="form-control">'
 	})
 	new Vue({
-		el:'#a',
-		data:{
-			activated:false
+		el: '#a',
+		data: {
+			activated: false
 		}
 	})
 </script>
+
 </html>

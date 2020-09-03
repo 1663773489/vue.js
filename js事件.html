@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title></title>
+    <title></title>
 </head>
+
 <body>
-	<p>你好，世界</p>
+    <p>你好，世界</p>
     <div id="a">
-    	<p>dom有用</p>
+        <p>dom有用</p>
     </div>
     <button onclick="getElementById('dome').innerHTML=Date()">现在的时间是</button>
     <p id="dome"></p>
     <script>
-    	var x=document.getElementById('a')
-    	var y=x.getElementsByTagName('p');//通过标签名查找html元素
-    	document.write('id="元素中发的：'+y[0].innerHTML);
+        var x = document.getElementById('a')
+        var y = x.getElementsByTagName('p');//通过标签名查找html元素
+        document.write('id="元素中发的：' + y[0].innerHTML);
     </script>
 </body>
+
 </html>

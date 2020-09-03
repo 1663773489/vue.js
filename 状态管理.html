@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title></title>
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/vuex"></script>
-</body>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/vuex"></script>
+	</body>
 </head>
+
 <body>
 	<div id="app"></div>
-<script type="text/javascript">
-	const store = new Vuex.Store({
-		state:{
-			name:'weish',
-			age:18
-		},
-		getters:{
-			personInfo(state){
-				return `My name is ${state.name}, I am ${state.age}`;
+	<script type="text/javascript">
+		const store = new Vuex.Store({
+			state: {
+				name: 'weish',
+				age: 18
+			},
+			getters: {
+				personInfo(state) {
+					return `My name is ${state.name}, I am ${state.age}`;
+				}
+			},
+			mutations: {
+				SET_AGE(stste, age) {
+					commit(age, age);
+				}
+			},
+			actions: {
+				nameAsyn({ commit }) {
+					setTimeout(() => {
+						commit('SET_AGE', 18);
+					}, 1000);
+				}
 			}
-		},
-		mutations:{
-			SET_AGE(stste,age){
-				commit(age,age);
-			}
-		},
-		actions:{
-			nameAsyn({commit}){
-				setTimeout(()=>{
-					commit('SET_AGE',18);
-				} ,1000);
-			}
-		}
-	})
-	new Vue({
-		el:'#app'
-	})
-</script>
+		})
+		new Vue({
+			el: '#app'
+		})
+	</script>
+
 </html>

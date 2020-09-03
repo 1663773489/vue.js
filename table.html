@@ -1,145 +1,125 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<title></title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <title></title>
 </head>
+
 <body>
-<div id="app">
-	<el-date-picker
-                      v-model="value6"
-                      type="daterange"
-                      range-separator="至"
-                      start-placeholder="开始日期"
-                      end-placeholder="结束日期"
-                      format="yyyy年M月d日"
-                      value-format="yyyy-MM-dd"
-                      v-on:change="change1"
-                    >
-                  </el-date-picker>
-       <li v-for="item in items" :key="item.checked">
-                            <span>{{item}}</span>
-                      </li>
-  <el-table
-    ref="multipleTable"
-    :data="items"
-    tooltip-effect="dark"
-    style="width: 100%"
-    @selection-change="handleSelectionChange">
-    <el-table-column
-      type="selection"
-      width="55">
-    </el-table-column>
-    <el-table-column
-   prop:date
-      label="日期"
-      width="120">
-      <li v-for="(item,index) in items" :key="item.checked">
-                          <template >{{ item }}</template>
-                      </li>
-     
-    </el-table-column>
-    <el-table-column
-      prop="name"
-      label="姓名"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      prop="address"
-      label="地址"
-      show-overflow-tooltip>
-    </el-table-column>
-  </el-table>
-  <div style="margin-top: 20px">
-    <el-button @click="toggleSelection()">取消选择</el-button>
+  <div id="app">
+    <el-date-picker v-model="value6" type="daterange" range-separator="至" start-placeholder="开始日期"
+      end-placeholder="结束日期" format="yyyy年M月d日" value-format="yyyy-MM-dd" v-on:change="change1">
+    </el-date-picker>
+    <li v-for="item in items" :key="item.checked">
+      <span>{{item}}</span>
+    </li>
+    <el-table ref="multipleTable" :data="items" tooltip-effect="dark" style="width: 100%"
+      @selection-change="handleSelectionChange">
+      <el-table-column type="selection" width="55">
+      </el-table-column>
+      <el-table-column prop:date label="日期" width="120">
+        <li v-for="(item,index) in items" :key="item.checked">
+          <template>{{ item }}</template>
+        </li>
+
+      </el-table-column>
+      <el-table-column prop="name" label="姓名" width="120">
+      </el-table-column>
+      <el-table-column prop="address" label="地址" show-overflow-tooltip>
+      </el-table-column>
+    </el-table>
+    <div style="margin-top: 20px">
+      <el-button @click="toggleSelection()">取消选择</el-button>
+    </div>
   </div>
-</div>
 
-<script>
-	Date.prototype.format = function () {
-    var s = "";
-    s += this.getFullYear() + "-";
-    s += this.getMonth() + 1 + "-";
-    s += this.getDate();
-    return s;
-  };
- var app = new Vue({
-    el:'#app',
-    data() {
-      return {
-      	items:[{
-      		date:"item"
-      	}],
-      	value6:'',
-        tableData3: [{
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-08',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-06',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-07',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }],
-        multipleSelection: []
-      }
-    },
-
-    methods: {
-    	change1:function(value6){
-    	var begin = value6[0];
-        var end = value6[1];
-        var item = new Array();
-        app.$data.items = item;
-        var ab = begin.split("-");
-        var ae = end.split("-");
-        var db = new Date();
-        db.setUTCFullYear(ab[0], ab[1] - 1, ab[2]);
-        var de = new Date();
-        de.setUTCFullYear(ae[0], ae[1] - 1, ae[2]);
-        var unixDb = db.getTime();
-        var unixDe = de.getTime();
-        for (var k = unixDb; k <= unixDe;) {
-          item.push(new Date(parseInt(k)).format().toString());
-          k = k + 24 * 60 * 60 * 1000;
+  <script>
+    Date.prototype.format = function () {
+      var s = "";
+      s += this.getFullYear() + "-";
+      s += this.getMonth() + 1 + "-";
+      s += this.getDate();
+      return s;
+    };
+    var app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          items: [{
+            date: "item"
+          }],
+          value6: '',
+          tableData3: [{
+            date: '2016-05-03',
+            name: '王小虎',
+            address: '上海市普陀区金沙江路 1518 弄'
+          }, {
+            date: '2016-05-02',
+            name: '王小虎',
+            address: '上海市普陀区金沙江路 1518 弄'
+          }, {
+            date: '2016-05-04',
+            name: '王小虎',
+            address: '上海市普陀区金沙江路 1518 弄'
+          }, {
+            date: '2016-05-01',
+            name: '王小虎',
+            address: '上海市普陀区金沙江路 1518 弄'
+          }, {
+            date: '2016-05-08',
+            name: '王小虎',
+            address: '上海市普陀区金沙江路 1518 弄'
+          }, {
+            date: '2016-05-06',
+            name: '王小虎',
+            address: '上海市普陀区金沙江路 1518 弄'
+          }, {
+            date: '2016-05-07',
+            name: '王小虎',
+            address: '上海市普陀区金沙江路 1518 弄'
+          }],
+          multipleSelection: []
         }
       },
-      toggleSelection(rows) {
-        if (rows) {
-          rows.forEach(row => {
-            this.$refs.multipleTable.toggleRowSelection(row);
-          });
-        } else {
-          this.$refs.multipleTable.clearSelection();
+
+      methods: {
+        change1: function (value6) {
+          var begin = value6[0];
+          var end = value6[1];
+          var item = new Array();
+          app.$data.items = item;
+          var ab = begin.split("-");
+          var ae = end.split("-");
+          var db = new Date();
+          db.setUTCFullYear(ab[0], ab[1] - 1, ab[2]);
+          var de = new Date();
+          de.setUTCFullYear(ae[0], ae[1] - 1, ae[2]);
+          var unixDb = db.getTime();
+          var unixDe = de.getTime();
+          for (var k = unixDb; k <= unixDe;) {
+            item.push(new Date(parseInt(k)).format().toString());
+            k = k + 24 * 60 * 60 * 1000;
+          }
+        },
+        toggleSelection(rows) {
+          if (rows) {
+            rows.forEach(row => {
+              this.$refs.multipleTable.toggleRowSelection(row);
+            });
+          } else {
+            this.$refs.multipleTable.clearSelection();
+          }
+        },
+        handleSelectionChange(val) {
+          this.multipleSelection = val;
         }
-      },
-      handleSelectionChange(val) {
-        this.multipleSelection = val;
       }
-    }
-   })
-</script>
+    })
+  </script>
 </body>
+
 </html>

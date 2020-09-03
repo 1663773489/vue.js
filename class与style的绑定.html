@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<title>class与style的绑定</title>
 	<style type="text/css">
-		.active{
+		.active {
 			background: green;
 			width: 100px;
 			height: 100px;
 		}
 	</style>
 </head>
+
 <body>
 	<div id="a">
-	<div v-bind:class="{active: isActive}"></div>
-	<!-- <div 
+		<div v-bind:class="{active: isActive}"></div>
+		<!-- <div 
 		class="static"
 		v-bind:class="{active:isActive,'text-danger':hasError }"></div> -->
 	</div>
@@ -23,19 +25,20 @@
 	</div>
 </body>
 <script>
-	var a =new Vue({
-		el:'#a',
-		data:{
-			isActive:true
+	var a = new Vue({
+		el: '#a',
+		data: {
+			isActive: true
 			// hasError:false
 		}
 	});
-	var b=new Vue（{
+	var b = new Vue（{
 		el:'#b',
-		data:{
+		data: {
 			activeColor:'green',
 			fontSize:30
 		}
 	}
 </script>
+
 </html>

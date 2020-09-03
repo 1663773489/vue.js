@@ -1,55 +1,58 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title></title>
 </head>
+
 <body>
 
 </body>
 <script type="text/javascript">
-	var data = [1,2,3,4,5];
+	var data = [1, 2, 3, 4, 5];
 	var sum = 0;
 	//将每个值累加到sum身上
-	data.forEach(function(value){
+	data.forEach(function (value) {
 		sum += value
 	});
 	console.log(sum);
-	data.forEach(function(v,i,a){
-		a[i] = v+1;
+	data.forEach(function (v, i, a) {
+		a[i] = v + 1;
 	});
 	console.log(data);
-	function forEach(a,f,t){
-		try{a.forEach(f,t);}
-		catch(e){
-			if(e===forEach.break) 
+	function forEach(a, f, t) {
+		try { a.forEach(f, t); }
+		catch (e) {
+			if (e === forEach.break)
 				return;
 			else throw e;
 		}
 	}
 	forEach.break = new Error("StopIteration");
-	a = [1,2,3];
+	a = [1, 2, 3];
 	//map()方法将调用的数组的每个元素传递给指定的函数，并返回一个数组，它包含该函数的返回值
-	b = a.map(function(x){
-		return x*x
+	b = a.map(function (x) {
+		return x * x
 	});
 	console.log(b);
 	//fliter()方法返回的数组元素是调用的数组的一个子集
-	a = [5,4,3,2,1];
-	smallvalues = a.filter(function(x){
-		return x <3
+	a = [5, 4, 3, 2, 1];
+	smallvalues = a.filter(function (x) {
+		return x < 3
 	});
-	everyother = a.filter(function(x,i){
-		return i%2 ==0
+	everyother = a.filter(function (x, i) {
+		return i % 2 == 0
 	});
 	console.log(smallvalues);
 	console.log(everyother);
-	var dense = sparse.filter(function(){
+	var dense = sparse.filter(function () {
 		return true;
 	});
 	console.log(dense);
-	a = a.filter(function(x){
+	a = a.filter(function (x) {
 		return x !== undefined && x != null
 	});
 	console.log(a);
 </script>
+
 </html>

@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<title></title>
 </head>
+
 <body>
 </body>
 <script type="text/javascript">
-	function getUserAccount(){
+	function getUserAccount() {
 		return axios.get('');
 	}
-	function getUserPermissions(){
+	function getUserPermissions() {
 		return axios get('');
 	}
-	axios.all([getUserAccount(),getUserPermissions()])
-		.then(axios.spread(function(acct,perms){
+	axios.all([getUserAccount(), getUserPermissions()])
+		.then(axios.spread(function (acct, perms) {
 			//两个请求现在都执行完成
 		}))
 </script>
+
 </html>

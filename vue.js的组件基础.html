@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title></title>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
+
 <body>
 	<div id="a">
 		<button v-on:click="count++" style="font-size: 25px;">you click me {{count}} times</button>
@@ -11,41 +13,31 @@
 		<button-counter></button-counter>
 		<button-counter></button-counter>
 	</div>
-		<!--组件的复用-->
-	 <div id="b">
+	<!--组件的复用-->
+	<div id="b">
 		<blog-post title="学习"></blog-post>
 		<blog-post title="xuexi"></blog-post>
 		<blog-post title="学习"></blog-post> -->
-		<blog-post 
-		v-for="post in posts" 
-		v-bind:key="post.id" 
-		v-bind:title="post.title"></blog-post>
+		<blog-post v-for="post in posts" v-bind:key="post.id" v-bind:title="post.title"></blog-post>
 		<!--我们可以使用v-bind来动态传递prop-->
 	</div>
 	<div class="blog-post">
 		<button v-on:click="$emit('enlarge-text')">
-  Enlarge text
-</button>
-		<blog-post
-  		v-for="post in posts"
-  		v-bind:key="post.id"
-  		v-bind:post="post"
-  		v-bind:content="post.content"
-  		></blog-post>
-  		<!--上面的是单个根元素 -->
-  		<!-- 下面的是监听子组件事件 -->
+			Enlarge text
+		</button>
+		<blog-post v-for="post in posts" v-bind:key="post.id" v-bind:post="post" v-bind:content="post.content">
+		</blog-post>
+		<!--上面的是单个根元素 -->
+		<!-- 下面的是监听子组件事件 -->
 	</div>
 	<div id="blog-posts-events-demo">
 		<div :style="{ fontSize: postFontSize + 'em'}">
 			<!-- 同时子组件可以通过内建的$emit 方法并传入事件名称来触发一个事件-->
 			<button v-on:click="$emit('enlarge-text' ,0.1)">
-				  Enlarge text
+				Enlarge text
 			</button>
-			<blog-post
-			v-for="post in posts"
-			v-bind:key="post.id"
-			v-bind:post="post"
-			v-on:enlarge-text="postFontSize += $event">
+			<blog-post v-for="post in posts" v-bind:key="post.id" v-bind:post="post"
+				v-on:enlarge-text="postFontSize += $event">
 				<!-- 有了这个监听器，父级组件就会接收该事件并更新postFontSize的值 -->
 			</blog-post>
 		</div>
@@ -62,70 +54,70 @@
   		</custom-input>
 	</div> -->
 </body>
-	<script>
-		//定义一个名为button-counter的新组建
-		//全局注册组件
-		Vue.component('button-counter',{
-			//一个组件的data必须是一个函数
-			data:function() {
-				return{
-					count:1
-				}
-			},
-			template:'<button v-on:click="count++">you click me {{count }} times.</button>'//自定义待办事项
-		})
-		var a = new Vue({
-			el:'#a',
-			data:{
-				count:0
+<script>
+	//定义一个名为button-counter的新组建
+	//全局注册组件
+	Vue.component('button-counter', {
+		//一个组件的data必须是一个函数
+		data: function () {
+			return {
+				count: 1
 			}
-		})
-		Vue.component('blog-post',{
-			props:['title'],
-			template:'<h3>这个是通过prop向子组件传递数据{{title}}</h3>'
-		})
-		new Vue({
-			el:'#b',
-			data:{
-				posts:[
-				{id:1, title:'学习'},
-				{id:2, title:'xuexi'},
-				{id:3, title:'学习'}
-				]
-			}
-		})
-		//下面的是单个根元素
-		Vue.component('blog-post', {
-  				props: ['post'],
- 				template:'<div class="blog-post"><h3>{{ post.title }}</h3><div v-html="post.content"></div></div>'
-		})
-		new Vue({
-			el:'.blog-post',
-			data:{
-				posts:[
-				{id:1, title:'学习'},
-				{id:2, title:'xuexi'},
-				{id:3, title:'学习'}
-				],
-			   content:'<div style="color:red">这里应该不一样</div>'
-			}
-		})
-		//下面的是监听子组件事件
-		Vue.component('blog-post',{
-			props:['post'],
-			template:'<div class="blog-post"><h3>{{ post.title }}</h3><button>Enlarge text</button><div v-html="post.content"></div></div>'
-		})
-		new Vue({
-			el:'#blog-posts-events-demo',
-			data:{
-				posts:[
-				{id:1, title:'学习'},
-				{id:2, title:'xuexi'},
-				{id:3, title:'学习'}
-				],
-				postFontSize:''
-			}
-		})
+		},
+		template: '<button v-on:click="count++">you click me {{count }} times.</button>'//自定义待办事项
+	})
+	var a = new Vue({
+		el: '#a',
+		data: {
+			count: 0
+		}
+	})
+	Vue.component('blog-post', {
+		props: ['title'],
+		template: '<h3>这个是通过prop向子组件传递数据{{title}}</h3>'
+	})
+	new Vue({
+		el: '#b',
+		data: {
+			posts: [
+				{ id: 1, title: '学习' },
+				{ id: 2, title: 'xuexi' },
+				{ id: 3, title: '学习' }
+			]
+		}
+	})
+	//下面的是单个根元素
+	Vue.component('blog-post', {
+		props: ['post'],
+		template: '<div class="blog-post"><h3>{{ post.title }}</h3><div v-html="post.content"></div></div>'
+	})
+	new Vue({
+		el: '.blog-post',
+		data: {
+			posts: [
+				{ id: 1, title: '学习' },
+				{ id: 2, title: 'xuexi' },
+				{ id: 3, title: '学习' }
+			],
+			content: '<div style="color:red">这里应该不一样</div>'
+		}
+	})
+	//下面的是监听子组件事件
+	Vue.component('blog-post', {
+		props: ['post'],
+		template: '<div class="blog-post"><h3>{{ post.title }}</h3><button>Enlarge text</button><div v-html="post.content"></div></div>'
+	})
+	new Vue({
+		el: '#blog-posts-events-demo',
+		data: {
+			posts: [
+				{ id: 1, title: '学习' },
+				{ id: 2, title: 'xuexi' },
+				{ id: 3, title: '学习' }
+			],
+			postFontSize: ''
+		}
+	})
 		// 下面是在组件上使用v-model
 		// Vue.component('custom-input', {
   // 				props: ['value'],
@@ -134,8 +126,9 @@
 		// new Vue({
 		// 	el:'#2',
 		// 	data:{
-				
+
 		// 	}
 		// })
-	</script>
+</script>
+
 </html>

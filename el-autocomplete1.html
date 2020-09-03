@@ -1,67 +1,68 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title></title>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
+
 <body>
-<div id="app">
-	{{city}}
-	<el-autocomplete type="text" v-model="city"
-	:fetch-suggestions="querySearch"
-	@keyup.enter = "methodsbyPush"
-	></el-autocomplete>
-	<button @click="methodsbyPush">添加数据</button>
-</div>
+	<div id="app">
+		{{city}}
+		<el-autocomplete type="text" v-model="city" :fetch-suggestions="querySearch" @keyup.enter="methodsbyPush">
+		</el-autocomplete>
+		<button @click="methodsbyPush">添加数据</button>
+	</div>
 </body>
 <script type="text/javascript">
 	const API_PROXY = "https://bird.ioliu.cn/v1/?url=";
 	new Vue({
-		el:'#app',
-		data(){
-			return{
-				city:"",
-				citynames:[
-				{value:'北京'},
-				{value:'上海'},
-				{value:'天津'},
-				{value:'湖北'},
-				{value:'山东'},
-				{value:'济南'},
-				{value:'长春'},
+		el: '#app',
+		data() {
+			return {
+				city: "",
+				citynames: [
+					{ value: '北京' },
+					{ value: '上海' },
+					{ value: '天津' },
+					{ value: '湖北' },
+					{ value: '山东' },
+					{ value: '济南' },
+					{ value: '长春' },
 				],
 
 			}
 		},
-		methods:{
-			querySearch(queryString,callback){
+		methods: {
+			querySearch(queryString, callback) {
 				var citynames = this.citynames;
 				callback(citynames);
 			},
-			methodsbyPush:function(){
+			methodsbyPush: function () {
 				var citynames = this.citynames;
-				var i=0;len=citynames.length;
-				var a ;
-				for(;i<len;i++){
+				var i = 0; len = citynames.length;
+				var a;
+				for (; i < len; i++) {
 					console.log(citynames[i]);
 					console.log(this.city);
 					console.log(!a);
 					console.log(citynames)
-					if(citynames[i].value == this.city){
-						a=true;
+					if (citynames[i].value == this.city) {
+						a = true;
 						break
-					}else{
-						a=false
-					}	
+					} else {
+						a = false
+					}
 				}
-				if(!a){
-					citynames.push({value:this.city})
+				if (!a) {
+					citynames.push({ value: this.city })
 				}
 			}
 		}
 	})
 </script>
+
 </html>

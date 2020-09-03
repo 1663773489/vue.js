@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>数字翻牌器</title>
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <style>
-        body{
+        body {
             margin: 0;
             padding: 0;
         }
+
         .doubler {
             width: 500px;
             height: 60px;
@@ -18,32 +20,35 @@
             /* 调整显示位置，可随意修改*/
             margin: 50px 500px;
         }
+
         .number {
             height: 60px;
             overflow: hidden;
             margin: auto
         }
+
         .num {
             width: 45px;
             height: 60px;
             font-size: 60px;
             line-height: 60px
         }
- 
+
         .li {
             width: 45px;
             float: left;
             color: #000
         }
- 
+
         .comma {
             width: 20px;
             line-height: 60px;
-            font-size: 60px;;
+            font-size: 60px;
+            ;
             color: #000;
             float: left
         }
- 
+
         .describe {
             float: left;
             line-height: 14px;
@@ -55,13 +60,14 @@
         }
     </style>
 </head>
+
 <body>
-<div class="doubler">
-    <div id="number" class="number"></div>
-    <input type="hidden" id="hdnum" value="12345"/>
-</div>
+    <div class="doubler">
+        <div id="number" class="number"></div>
+        <input type="hidden" id="hdnum" value="12345" />
+    </div>
 </body>
- 
+
 <script>
     $(function () {
         // 初始化
@@ -70,7 +76,7 @@
         // 3秒中刷新一次
         setInterval("change()", 3000);
     });
- 
+
     // 渲染页面
     function init() {
         var numStr = $("#hdnum").val();
@@ -97,7 +103,7 @@
         $("#number").html(html);
         $("#number").css("width", (numStr.length * 45 + Math.floor(numStr.length / 3) * 20 + 40) + "px");
     }
- 
+
     // 数字翻牌
     function change() {
         // 随机生成一个五位数
@@ -109,10 +115,11 @@
         } else {
             for (var i = 0; i < numStr.length; i++) {
                 var margin = 60 * parseInt(numStr[i]);
-                $("#number").find("div.li").eq(i).css({"margin-top": 0 - margin + "px", "transition": "margin-top 1s"});
+                $("#number").find("div.li").eq(i).css({ "margin-top": 0 - margin + "px", "transition": "margin-top 1s" });
             }
         }
         $("#hdnum").val(num);
     }
 </script>
+
 </html>

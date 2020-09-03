@@ -1,43 +1,46 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<script src="https://unpkg.com/vue/dist/vue.js"></script>
 	<script src="https://unpkg.com/vuex"></script>
 	<title></title>
 </head>
+
 <body>
-<template id="Couter">
-<div id="app">
-	Clicked:{{$store.state.count}} times,count is {{evenOrOdd}}
-	<button @click="increment">+</button>
-	<button @click="decrement">-</button>
-	<button @click="incrementIfOdd">Increment if odd</button>
-	<button @click="incrementAsync">Increment async</button>
-</div>
-</template>
+	<template id="Couter">
+		<div id="app">
+			Clicked:{{$store.state.count}} times,count is {{evenOrOdd}}
+			<button @click="increment">+</button>
+			<button @click="decrement">-</button>
+			<button @click="incrementIfOdd">Increment if odd</button>
+			<button @click="incrementAsync">Increment async</button>
+		</div>
+	</template>
 </body>
 <script type="text/javascript">
 	import { mapGetters, mapActions } from 'vuex'
-	export default{
-		computed:mapGetters([
+	export default {
+		computed: mapGetters([
 			'evenOrOdd'
 		]),
-		methods:mapActions([
+		methods: mapActions([
 			'increment',
 			'decrement',
 			'incrementIfOdd',
 			'incrementAsync'])
 
 	},
-	Vue.component('Counter',{
-		template:'#Counter'	
+	Vue.component('Counter', {
+		template: '#Counter'
 	}),
-	new Vue({
-		el:'#app',
-		store,
-		rendr:function(H){
+		new Vue({
+			el: '#app',
+			store,
+			rendr: function (H) {
 				return H(Counter)
 			}
-	})
+		})
 </script>
+
 </html>

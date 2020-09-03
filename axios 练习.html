@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<!-- <script type="text/javascript">
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<!-- <script type="text/javascript">
 	// axios.get('http://v.juhe.cn/toutiao/index',{
 	// 	params:{
 	// 		key:'15fc12f0c8512e97a10c73e9641b8080'
@@ -17,58 +18,61 @@
 	// })
 </script> -->
 	<title></title>
-	<style type="text/css">	
-	#text{
-		float: right;
-		width: 73%;
-		vertical-align: center;
-	}
+	<style type="text/css">
+		#text {
+			float: right;
+			width: 73%;
+			vertical-align: center;
+		}
 	</style>
 </head>
+
 <body>
-<div id="app">
-	<ul type="none">
-		<li v-for="result in results">
-			<span class="image">
-			<br>
-			<img v-bind:src="result.thumbnail_pic_s">
-			<div id="text">
-				<br>
-			<a v-bind:href="result.url" style="text-decoration:none;">
-			<h1>{{result.title}}</h1></a>
-			<button v-on:click="category">头条</button>
-			{{result.author_name}}.  
-			{{result.date}}
-			<br>
-			</div>
-		</span>
-			<div style="height:1px;background-color:gray;"></div>
-		</li>
-	</ul>
-</div>
+	<div id="app">
+		<ul type="none">
+			<li v-for="result in results">
+				<span class="image">
+					<br>
+					<img v-bind:src="result.thumbnail_pic_s">
+					<div id="text">
+						<br>
+						<a v-bind:href="result.url" style="text-decoration:none;">
+							<h1>{{result.title}}</h1>
+						</a>
+						<button v-on:click="category">头条</button>
+						{{result.author_name}}.
+						{{result.date}}
+						<br>
+					</div>
+				</span>
+				<div style="height:1px;background-color:gray;"></div>
+			</li>
+		</ul>
+	</div>
 </body>
 <script type="text/javascript">
-	var API_PROXY= 'https://bird.ioliu.cn/v1/?url='
+	var API_PROXY = 'https://bird.ioliu.cn/v1/?url='
 	var vm = new Vue({
-		el:'#app',
-		data(){
-			return{
-				results:[],
-				category(){
+		el: '#app',
+		data() {
+			return {
+				results: [],
+				category() {
 				}
 			}
 		},
 		mounted() {
 			var _this = this
 			axios.get("http://v.juhe.cn/toutiao/index?key=15fc12f0c8512e97a10c73e9641b8080")
-			.then(function(response){
-				_this.results = response.data.result.data
-				console.log(_this.results);
-			})
-			.catch(function(error){
-				console.log(error);
-			})	
-			},
+				.then(function (response) {
+					_this.results = response.data.result.data
+					console.log(_this.results);
+				})
+				.catch(function (error) {
+					console.log(error);
+				})
+		},
 	})
 </script>
+
 </html>

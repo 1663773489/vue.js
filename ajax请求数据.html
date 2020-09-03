@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title></title>
 	<script type="text/javascript">
-		function loadXMLDoc(){
+		function loadXMLDoc() {
 			var xmlhttp;
-			if(window.XMLHttpRequest)
-			{
+			if (window.XMLHttpRequest) {
 				xmlhttp = new XMLHttpRequest();
 			}
-			else
-			{
+			else {
 				xmlhttp = new ActiveXobject("Microsoft.XMLHTTP");
 			}
-			xmlhttp.onreadystatechange=function()
-			{
-				if(xmlhttp.readyState==4&&xmlhttp.status==200)
-				{
+			xmlhttp.onreadystatechange = function () {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 					document.getElementById('myDiv').innerHTML = xmlhttp.responseText
 				}
 			}
-			xmlhttp.open("GET",".txt",true);
+			xmlhttp.open("GET", ".txt", true);
 			xmlhttp.send();
 		}
 	</script>
 </head>
+
 <body>
-<div id="myDiv">
-	<button type="button" onclick="loadXMLDoc()">请求数据</button>
-	<div id="myDiv"></div>
-</div>
+	<div id="myDiv">
+		<button type="button" onclick="loadXMLDoc()">请求数据</button>
+		<div id="myDiv"></div>
+	</div>
 </body>
+
 </html>

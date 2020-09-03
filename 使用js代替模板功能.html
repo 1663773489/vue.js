@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<title></title>
 </head>
+
 <body>
 	<div id="app">
 		<ele :show="show"></ele>
@@ -11,26 +13,27 @@
 	</div>
 </body>
 <script type="text/javascript">
-	Vue.component('ele',{
-		render:function(createElement){
-			if(this.show){
-				return createElement('p','show的值为true');
-			}else{
-				return createElement('p','show的值为false');
+	Vue.component('ele', {
+		render: function (createElement) {
+			if (this.show) {
+				return createElement('p', 'show的值为true');
+			} else {
+				return createElement('p', 'show的值为false');
 			}
 		},
-		props:{
-			show:{
-				type:Boolean,
-				default:false
+		props: {
+			show: {
+				type: Boolean,
+				default: false
 			}
 		}
 	});
 	new Vue({
-		el:'#app',
-		data:{
-			show:false
+		el: '#app',
+		data: {
+			show: false
 		}
 	})
 </script>
+
 </html>

@@ -1,32 +1,35 @@
 <!DOCTYPE>
 <html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>JS</title>
 </head>
+
 <body>
     <textarea name="neirong" id="neirong" type="text" style="WIDTH: 200px; HEIGHT: 200px;overflow:auto;"></textarea>
     <textarea name="neirong1" id="neirong1" type="text" style="WIDTH:200px; HEIGHT: 200px; overflow:auto;"></textarea>
-    <input type="button" value="去除重复" onclick="return sx();"/>
+    <input type="button" value="去除重复" onclick="return sx();" />
     <script type="text/javascript">
-    function sx(){ 
-        var rntArray=[],temp,hasValue;
-        var array=document.getElementById("neirong").value.split("\n");
-        for(var i in array){
-            temp=array[i];
-            hasValue=false;
-            for(var j in rntArray){
-                if(temp===rntArray[j]){
-                    hasValue=true;
-                    break;
+        function sx() {
+            var rntArray = [], temp, hasValue;
+            var array = document.getElementById("neirong").value.split("\n");
+            for (var i in array) {
+                temp = array[i];
+                hasValue = false;
+                for (var j in rntArray) {
+                    if (temp === rntArray[j]) {
+                        hasValue = true;
+                        break;
+                    }
+                }
+                if (hasValue === false) {
+                    rntArray.push(temp);
                 }
             }
-            if(hasValue===false){
-                rntArray.push(temp);
-            }
+            document.getElementById("neirong1").value = rntArray.join("\n");
         }
-        document.getElementById("neirong1").value=rntArray.join("\n");
-    }
     </script>
 </body>
+
 </html>

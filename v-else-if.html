@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title></title>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
+
 <body>
 	<div id="a">
-	<div v-if='type==="a"'>a</div>
-	<div v-else-if ='type==="b"'>b</div>
-	<div v-else-if='type==="c"'>c</div>
-	<div v-else> Not a/b/c</div>
+		<div v-if='type==="a"'>a</div>
+		<div v-else-if='type==="b"'>b</div>
+		<div v-else-if='type==="c"'>c</div>
+		<div v-else> Not a/b/c</div>
 	</div>
 </body>
 <script>
 	new Vue({
-		el:'#a',
-		data:{
-			type:'a'
+		el: '#a',
+		data: {
+			type: 'a'
 		}
 	})
 </script>
+
 </html>

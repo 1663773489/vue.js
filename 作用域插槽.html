@@ -1,52 +1,61 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<title>作用域插槽</title>
 	<style type="text/css">
-	body {background:linear-gradient(270deg, #0E6251, #28B463);
-}
-#app {
-  display: flex;
-}
-.my-list {
-  flex: 1 1 50%;
-  font-family: Arial;
-  color: white;
-  $padding: 20px;
-  $radius: 4px;
-  margin: 20px;
-}
- .title {
-    background: #A93226;
-    padding: $padding;
-    font-weight: bold;
-    font-size: 22px;
-    border-top-left-radius:$radius;
-    border-top-right-radius: $radius;
-  }
-  .list {
-    background: #34495E;
-    padding: $padding;
-    font-size: 16px;
-    border-bottom-left-radius: $radius;
-    border-bottom-right-radius: $radius;
-  }
-  .list-item:not(:last-child) {
-    padding-bottom: $padding;
-  }
-}
-body {
- 	</style>
+		body {
+			background: linear-gradient(270deg, #0E6251, #28B463);
+		}
+
+		#app {
+			display: flex;
+		}
+
+		.my-list {
+			flex: 1 1 50%;
+			font-family: Arial;
+			color: white;
+			$padding: 20px;
+			$radius: 4px;
+			margin: 20px;
+		}
+
+		.title {
+			background: #A93226;
+			padding: $padding;
+			font-weight: bold;
+			font-size: 22px;
+			border-top-left-radius: $radius;
+			border-top-right-radius: $radius;
+		}
+
+		.list {
+			background: #34495E;
+			padding: $padding;
+			font-size: 16px;
+			border-bottom-left-radius: $radius;
+			border-bottom-right-radius: $radius;
+		}
+
+		.list-item:not(:last-child) {
+			padding-bottom: $padding;
+		}
+		}
+
+		body {
+	</style>
 </head>
+
 <body>
-<div id="app">
-	<my-component></my-component>
-</div>
+	<div id="app">
+		<my-component></my-component>
+	</div>
 </body>
 <script>
-	Vue.component('my-component',{
-		template:'<div class="my-component">\
+	Vue.component('my-component', {
+		template: '<div class="my-component">\
 						<div class="title">{{title}}</div>\
 						<div class="list">\
 							<div class="list-item" v-for="shape in shapes">\
@@ -54,28 +63,29 @@ body {
 							</div>\
 							</div>\
 							</div>',
-		data(){
-			return{
-				title:'Shapes',
+		data() {
+			return {
+				title: 'Shapes',
 				shapes: [
-				{
-					name: 'Square',
-					side: 4
-				},
-				{
-					name: 'Hexagon',
-					sides: 6
-				},
-				{
-					name: 'Triangle',
-					sides: 3
-				}
-			]
+					{
+						name: 'Square',
+						side: 4
+					},
+					{
+						name: 'Hexagon',
+						sides: 6
+					},
+					{
+						name: 'Triangle',
+						sides: 3
+					}
+				]
+			}
 		}
-	}
-})
+	})
 	var a = new Vue({
-		el:"#app"
+		el: "#app"
 	})
 </script>
+
 </html>

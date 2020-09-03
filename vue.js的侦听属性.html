@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>vue.js的侦听属性</title>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
+
 <body>
 	<div id="q">{{fullname}}</div>
 </body>
-	<script>
-		var a= new Vue({
-			el:'#q',
-			data:{
-				lastname:'jia',
-				firstname:'lili',
-				fullname:'jialili'
+<script>
+	var a = new Vue({
+		el: '#q',
+		data: {
+			lastname: 'jia',
+			firstname: 'lili',
+			fullname: 'jialili'
+		},
+		watch: {
+			firstname: function (v) {
+				this.fullname = v + ' ' + this.lastname
 			},
-			watch:{
-				firstname:function(v) {
-					this.fullname=v+' '+this.lastname
-				},
-				lastname:function(v){
-					this.fullname=this.firstname+' '+v
-				}
+			lastname: function (v) {
+				this.fullname = this.firstname + ' ' + v
 			}
-		})
-	</script>
+		}
+	})
+</script>
+
 </html>

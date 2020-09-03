@@ -1,95 +1,99 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title></title>
-	 <meta charset="utf-8">
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.2.1/echarts-en.common.js"></script>
+	<meta charset="utf-8">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.2.1/echarts-en.common.js"></script>
 </head>
+
 <body>
-<div id="app" style="width: 600px ;height: 400px;" >
-</div>
-<script type="text/javascript">
-	var myChart = echarts.init(document.getElementById('app'));
-	var a  = {
-		"succeed":true,
-		"model":{
-			"最高温度":[
-				{"id":6,"categoryId":null,"dimensionId":1,"productId":12,"name":"最高温度","value":"88","productName":"因特尔i3"},
-				{"id":9,"categoryId":null,"dimensionId":1,"productId":13,"name":"最高温度","value":"90","productName":"因特尔i5"}],
-			"工作温度":[
-				{"id":5,"categoryId":null,"dimensionId":1,"productId":12,"name":"工作温度","value":"75","productName":"因特尔i3"},
-				{"id":8,"categoryId":null,"dimensionId":1,"productId":13,"name":"工作温度","value":"81","productName":"因特尔i5"}],
-			"待机温度":[
-				{"id":4,"categoryId":null,"dimensionId":1,"productId":12,"name":"待机温度","value":"60","productName":"因特尔i3"},
-				{"id":7,"categoryId":null,"dimensionId":1,"productId":13,"name":"待机温度","value":"77","productName":"因特尔i5"}]},
-		"message":"",
-	};
-	var option = {
-		title:{
-			text:'多彩虹柱状图',
-			padding:[0,0,100,270],
-		},
-		tooltip:{},
-		legend:{
-			padding:[30,0],
-			name:[Object.values(a.model)[0][0].productName,Object.values(a.model)[0][1].productName]
-		},
-		xAxis: {
-			type:'category',   
-            data: [Object.values(a.model)[0][0].name,Object.values(a.model)[1][0].name,Object.values(a.model)[2][0].name],
-            axisLine:{               
-                    show:true,   
-                    symbol:['none', 'arrow'],   
-                    symbolSize:[8, 8] ,         
-                    symbolOffset:[0,7],        
-                    lineStyle:{
-                        color:'#000000',
-                        width:1,
-                        type:'solid',
-                    },
-                },
-            axisTick:{
-              	show:false,
-              }
-            },
-        yAxis: {
-        	axisTick:{
-        	 	show:false,
-        	 } ,
-        	splitLine:{
-        	   	show:false,
-        	   },
-        	axisLine:{  
-                    show:true,   
-                    symbol:['none', 'arrow'],   
-                    symbolSize:[8, 8] ,         
-                    symbolOffset:[0,7],        
-                    lineStyle:{
-                        color:'#000000',
-                        width:1,
-                        type:'solid',
-                    },
-                },
-        },
-        series: [{
-        		name:"因特尔i3",
-                type: 'bar',
-                data:[Object.values(a.model)[0][0].value,Object.values(a.model)[1][0].value,Object.values(a.model)[2][0].value],
-                itemStyle:{
-                	color:'#3399FF',
-                }
-            },
-            	{
-            	name:"因特尔i5",
-            	type:'bar',
-            	data:[Object.values(a.model)[0][1].value,Object.values(a.model)[1][1].value,Object.values(a.model)[2][1].value],
-				itemStyle:{
-					color:'#99FFFF'
+	<div id="app" style="width: 600px ;height: 400px;">
+	</div>
+	<script type="text/javascript">
+		var myChart = echarts.init(document.getElementById('app'));
+		var a = {
+			"succeed": true,
+			"model": {
+				"最高温度": [
+					{ "id": 6, "categoryId": null, "dimensionId": 1, "productId": 12, "name": "最高温度", "value": "88", "productName": "因特尔i3" },
+					{ "id": 9, "categoryId": null, "dimensionId": 1, "productId": 13, "name": "最高温度", "value": "90", "productName": "因特尔i5" }],
+				"工作温度": [
+					{ "id": 5, "categoryId": null, "dimensionId": 1, "productId": 12, "name": "工作温度", "value": "75", "productName": "因特尔i3" },
+					{ "id": 8, "categoryId": null, "dimensionId": 1, "productId": 13, "name": "工作温度", "value": "81", "productName": "因特尔i5" }],
+				"待机温度": [
+					{ "id": 4, "categoryId": null, "dimensionId": 1, "productId": 12, "name": "待机温度", "value": "60", "productName": "因特尔i3" },
+					{ "id": 7, "categoryId": null, "dimensionId": 1, "productId": 13, "name": "待机温度", "value": "77", "productName": "因特尔i5" }]
+			},
+			"message": "",
+		};
+		var option = {
+			title: {
+				text: '多彩虹柱状图',
+				padding: [0, 0, 100, 270],
+			},
+			tooltip: {},
+			legend: {
+				padding: [30, 0],
+				name: [Object.values(a.model)[0][0].productName, Object.values(a.model)[0][1].productName]
+			},
+			xAxis: {
+				type: 'category',
+				data: [Object.values(a.model)[0][0].name, Object.values(a.model)[1][0].name, Object.values(a.model)[2][0].name],
+				axisLine: {
+					show: true,
+					symbol: ['none', 'arrow'],
+					symbolSize: [8, 8],
+					symbolOffset: [0, 7],
+					lineStyle: {
+						color: '#000000',
+						width: 1,
+						type: 'solid',
+					},
+				},
+				axisTick: {
+					show: false,
 				}
-            }]
-	};
-	myChart.setOption(option);
-</script>
+			},
+			yAxis: {
+				axisTick: {
+					show: false,
+				},
+				splitLine: {
+					show: false,
+				},
+				axisLine: {
+					show: true,
+					symbol: ['none', 'arrow'],
+					symbolSize: [8, 8],
+					symbolOffset: [0, 7],
+					lineStyle: {
+						color: '#000000',
+						width: 1,
+						type: 'solid',
+					},
+				},
+			},
+			series: [{
+				name: "因特尔i3",
+				type: 'bar',
+				data: [Object.values(a.model)[0][0].value, Object.values(a.model)[1][0].value, Object.values(a.model)[2][0].value],
+				itemStyle: {
+					color: '#3399FF',
+				}
+			},
+			{
+				name: "因特尔i5",
+				type: 'bar',
+				data: [Object.values(a.model)[0][1].value, Object.values(a.model)[1][1].value, Object.values(a.model)[2][1].value],
+				itemStyle: {
+					color: '#99FFFF'
+				}
+			}]
+		};
+		myChart.setOption(option);
+	</script>
 
 </body>
+
 </html>

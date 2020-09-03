@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<title></title>
 </head>
+
 <body>
 	<div id="main">
 		<button type="button" @clicl="send">发送ajax请求</button>
 	</div>
 </body>
 <script type="text/javascript">
-	window.onload=function(){
+	window.onload = function () {
 		new Vue({
-			el:'#main',
-			data:{
+			el: '#main',
+			data: {
 
 			},
-			methods:{
-				send:function(){
+			methods: {
+				send: function () {
 					axios({
-						method:'get',
-						url:'https://wenda.so.com/q/1369736121064297',
+						method: 'get',
+						url: 'https://wenda.so.com/q/1369736121064297',
 					})
-					.then(function(response){                                
-						console.log(resp.data);
-					})
-					.catch(function(error){
-						console.log("发送失败"+resp.status+','+resp.statusText);
-					});
+						.then(function (response) {
+							console.log(resp.data);
+						})
+						.catch(function (error) {
+							console.log("发送失败" + resp.status + ',' + resp.statusText);
+						});
 				}
 			}
 		});
 	}
 </script>
+
 </html>

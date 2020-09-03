@@ -1,56 +1,62 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title></title>
-	<style type="text/css">	
-	.text{
-		float: right;
-		width: 73%;
-		vertical-align: center;
-	}
+	<style type="text/css">
+		.text {
+			float: right;
+			width: 73%;
+			vertical-align: center;
+		}
 	</style>
 </head>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 <body>
-<div id="app">
-	<ul type="none" v-for="result in results">
-		<li>
-			<img v-bind:src="result.thumbnail_pic_s">
-			<span class="text">
-				<a v-bind:href="result.url" style="text-decoration:none;"><h2>{{result.title}}</h2></a>
-				<button v-on:click="category">头条</button>
-				{{result.author_name}}.{{result.date}}
-			</span>
-			<div style="height:1px;background-color:gray;"></div>
-		</li>
-	</ul>
-</div>
+	<div id="app">
+		<ul type="none" v-for="result in results">
+			<li>
+				<img v-bind:src="result.thumbnail_pic_s">
+				<span class="text">
+					<a v-bind:href="result.url" style="text-decoration:none;">
+						<h2>{{result.title}}</h2>
+					</a>
+					<button v-on:click="category">头条</button>
+					{{result.author_name}}.{{result.date}}
+				</span>
+				<div style="height:1px;background-color:gray;"></div>
+			</li>
+		</ul>
+	</div>
 </body>
 <script type="text/javascript">
 	const API_PROXY = 'https://bird.ioliu.cn/v1/?url='
 	//定义一个常量代理API
 	var vm = new Vue({
-		el:'#app',
-		data(){
-			return{
-			results:[],
-			category(){
-				return
+		el: '#app',
+		data() {
+			return {
+				results: [],
+				category() {
+					return
+				}
 			}
-		}
 		},
-		mounted(){
+		mounted() {
 			var _this = this
-			axios.get(API_PROXY + 'http://v.juhe.cn/toutiao/index?key=15fc12f0c8512e97a10c73e9641b8080' )
-			//组合
-			.then(function (res) {  _this.results = res.data.result.data
-				//赋值
-		      console.log(_this.results)
-		    }, function (error) {
-		      console.log(error)
-			})
+			axios.get(API_PROXY + 'http://v.juhe.cn/toutiao/index?key=15fc12f0c8512e97a10c73e9641b8080')
+				//组合
+				.then(function (res) {
+					_this.results = res.data.result.data
+					//赋值
+					console.log(_this.results)
+				}, function (error) {
+					console.log(error)
+				})
 		},
 	})
 </script>
+
 </html>

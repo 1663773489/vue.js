@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title></title>
 </head>
+
 <body>
-<div id="app"></div>
+	<div id="app"></div>
 </body>
 <script type="text/javascript">
 	var store = {
-		debug:true,
-		state:{
-			message:'hello'
+		debug: true,
+		state: {
+			message: 'hello'
 		},
-		setMessageAction(newValue){
-			if(this.debug) console.log('setMessageAction triggered with',newValue)
+		setMessageAction(newValue) {
+			if (this.debug) console.log('setMessageAction triggered with', newValue)
 			this.state.message = newValue
 		},
-		clearMessageAction(){
-			if(this.debug) console.log('clearMessageAction triggered')
+		clearMessageAction() {
+			if (this.debug) console.log('clearMessageAction triggered')
 			this.state.message = ''
 		}
 	}
@@ -28,10 +30,11 @@
 		}
 	})
 	var vmB = new Vue({
-		data:{
+		data: {
 			privateState: {},
 			sharedState: store.state
 		}
 	})
 </script>
+
 </html>
