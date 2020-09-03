@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>通过伪元素：before实现css垂直居中</title>
+    <style>
+        #out {
+            width: 600px;
+            height: 300px;
+            background: red;
+            display: block;
+        }
+
+        #out:before {
+            content: '';
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+        }
+
+        #in {
+            background-color: rosybrown;
+            width: 50%;
+            height: 50%;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="out">
+        <div id="in"></div>
+    </div>
+</body>
+
+</html>
