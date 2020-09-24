@@ -1,0 +1,33 @@
+<style>
+    #circle {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        position: relative;
+        top: 0.3rem;
+    }
+</style>
+<html>
+<div id="circle"></div>
+
+</html>
+<script>
+    function sleep(duration) {
+        return new Promise(function (resolve) {
+            setTimeout(resolve, duration);
+        })
+    }
+    async function changeColor(duration, color) {  
+        document.getElementById("circle")
+        circle.style.backgroundColor = color
+        await sleep(duration);
+    }
+    async function main() {
+        while (true) {
+            await changeColor(3000, "green");
+            await changeColor(1000, "yellow");
+            await changeColor(2000, "red");
+        }
+    }
+    main()
+</script>
